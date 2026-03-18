@@ -6,256 +6,252 @@
 <title>FB Page Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:#f4f5f7;color:#1a1a2e;min-height:100vh}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; min-height: 100vh; }
 
-/* Setup */
-#setup-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem}
-.setup-card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.08);padding:2.5rem;width:100%;max-width:460px}
-.fb-logo{width:44px;height:44px;border-radius:50%;background:#1877F2;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem}
-.fb-logo svg{width:26px;height:26px;fill:white}
-.setup-card h2{font-size:20px;font-weight:600;margin-bottom:6px;color:#1a1a2e}
-.setup-card p{font-size:13px;color:#666;margin-bottom:1.75rem;line-height:1.6}
-.field-label{font-size:11px;font-weight:600;color:#888;letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px}
-.setup-card input{width:100%;padding:10px 13px;font-size:14px;border:1.5px solid #e5e7eb;border-radius:10px;background:#fff;color:#1a1a2e;margin-bottom:1.1rem;font-family:'DM Sans',sans-serif;transition:border .2s}
-.setup-card input:focus{outline:none;border-color:#1877F2}
-.connect-btn{width:100%;padding:12px;background:#1877F2;color:white;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
-.connect-btn:hover{background:#1664d8}
-.help-link{font-size:12px;color:#1877F2;cursor:pointer;text-align:center;margin-top:1rem;display:block;text-decoration:none}
-.err{font-size:12px;color:#e53e3e;margin-top:-0.75rem;margin-bottom:.85rem;display:none}
+#setup-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
+.setup-card { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,.08); padding: 2.5rem; width: 100%; max-width: 460px; }
+.fb-logo { width: 44px; height: 44px; border-radius: 50%; background: #1877F2; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+.fb-logo svg { width: 26px; height: 26px; fill: white; }
+.setup-card h2 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.setup-card p { font-size: 13px; color: #666; margin-bottom: 1.75rem; line-height: 1.6; }
+.field-label { font-size: 11px; font-weight: 600; color: #888; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 5px; }
+.setup-card input { width: 100%; padding: 10px 13px; font-size: 14px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: #fff; color: #1a1a2e; margin-bottom: 1.1rem; font-family: 'DM Sans', sans-serif; }
+.setup-card input:focus { outline: none; border-color: #1877F2; }
+.connect-btn { width: 100%; padding: 12px; background: #1877F2; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.connect-btn:hover { background: #1664d8; }
+.help-link { font-size: 12px; color: #1877F2; text-align: center; margin-top: 1rem; display: block; text-decoration: none; }
+.err { font-size: 12px; color: #e53e3e; margin-top: -0.75rem; margin-bottom: .85rem; display: none; }
 
-/* Layout */
-#main-app{display:none;min-height:100vh;flex-direction:column}
-.topbar{background:#fff;border-bottom:1px solid #eee;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
-.topbar-left{display:flex;align-items:center;gap:12px}
-.fb-dot{width:30px;height:30px;border-radius:50%;background:#1877F2;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.fb-dot svg{width:17px;height:17px;fill:white}
-.topbar select{font-size:14px;font-weight:600;border:none;background:transparent;color:#1a1a2e;cursor:pointer;outline:none;font-family:'DM Sans',sans-serif}
-.tabs{display:flex;gap:6px}
-.tab-btn{padding:7px 14px;font-size:13px;border:1.5px solid #e5e7eb;border-radius:8px;background:transparent;color:#666;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.tab-btn.active{background:#1877F2;color:#fff;border-color:#1877F2;font-weight:500}
-.disco-btn{padding:7px 11px;font-size:12px;border:1px solid #e5e7eb;border-radius:8px;background:transparent;color:#aaa;cursor:pointer;font-family:'DM Sans',sans-serif}
-.disco-btn:hover{color:#e53e3e;border-color:#e53e3e}
+#main-app { display: none; min-height: 100vh; flex-direction: column; }
+.topbar { background: #fff; border-bottom: 1px solid #eee; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; }
+.topbar-left { display: flex; align-items: center; gap: 12px; }
+.fb-dot { width: 30px; height: 30px; border-radius: 50%; background: #1877F2; display: flex; align-items: center; justify-content: center; }
+.fb-dot svg { width: 17px; height: 17px; fill: white; }
+.topbar select { font-size: 14px; font-weight: 600; border: none; background: transparent; color: #1a1a2e; cursor: pointer; outline: none; font-family: 'DM Sans', sans-serif; }
+.tab-btn { padding: 7px 14px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 8px; background: transparent; color: #666; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.tab-btn.active { background: #1877F2; color: #fff; border-color: #1877F2; font-weight: 500; }
+.disco-btn { padding: 7px 11px; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; background: transparent; color: #aaa; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.disco-btn:hover { color: #e53e3e; border-color: #e53e3e; }
 
-.content{padding:20px;max-width:780px;margin:0 auto;width:100%}
+.content { padding: 20px; max-width: 780px; margin: 0 auto; width: 100%; }
+.card { background: #fff; border-radius: 14px; box-shadow: 0 1px 6px rgba(0,0,0,.06); padding: 1.25rem 1.5rem; margin-bottom: 14px; }
+.card-title { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 12px; }
+.section-label { font-size: 11px; font-weight: 600; color: #aaa; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 10px; }
 
-/* Cards */
-.card{background:#fff;border-radius:14px;box-shadow:0 1px 6px rgba(0,0,0,.06);padding:1.25rem 1.5rem;margin-bottom:14px}
-.card-title{font-size:14px;font-weight:600;color:#1a1a2e;margin-bottom:12px}
-.section-label{font-size:11px;font-weight:600;color:#aaa;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
+.desc-card { background: #fff; border: 2px solid #1877F2; border-radius: 14px; padding: 16px 18px; margin-bottom: 16px; }
+.desc-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.desc-card-label { font-size: 11px; font-weight: 700; color: #1877F2; letter-spacing: .06em; text-transform: uppercase; display: flex; align-items: center; gap: 7px; }
+.desc-pill { background: #1877F2; color: #fff; border-radius: 4px; padding: 1px 7px; font-size: 10px; }
+.desc-edit-btn { font-size: 12px; padding: 6px 14px; border: 1.5px solid #1877F2; border-radius: 8px; background: #fff; color: #1877F2; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; }
+.desc-edit-btn:hover { background: #1877F2; color: #fff; }
 
-/* Description banner */
-.desc-banner{background:#f0f5ff;border:1px solid #c7d7f9;border-radius:10px;padding:11px 14px;margin-bottom:14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.desc-banner-text{font-size:13px;color:#444;line-height:1.5;flex:1}
-.desc-banner-text strong{color:#1a1a2e;font-weight:600}
-.desc-edit-btn{font-size:12px;padding:5px 11px;border:1px solid #c7d7f9;border-radius:7px;background:#fff;color:#1877F2;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;font-weight:500}
-.desc-edit-btn:hover{background:#1877F2;color:#fff}
+.compose-textarea { width: 100%; min-height: 100px; padding: 10px 13px; font-size: 14px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: #fafafa; color: #1a1a2e; resize: vertical; font-family: 'DM Sans', sans-serif; line-height: 1.6; }
+.compose-textarea:focus { outline: none; border-color: #1877F2; background: #fff; }
 
-/* Compose */
-.compose-card textarea{width:100%;min-height:90px;padding:10px 13px;font-size:14px;border:1.5px solid #e5e7eb;border-radius:10px;background:#fafafa;color:#1a1a2e;resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6;transition:border .2s}
-.compose-card textarea:focus{outline:none;border-color:#1877F2;background:#fff}
-.compose-hint{font-size:11px;color:#aaa;margin-top:5px;margin-bottom:10px}
-.compose-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.schedule-row{display:flex;align-items:center;gap:8px}
-.schedule-row label{font-size:12px;color:#888;font-weight:500}
-.schedule-row input[type=datetime-local]{font-size:12px;padding:6px 9px;border:1.5px solid #e5e7eb;border-radius:8px;background:#fff;color:#1a1a2e;font-family:'DM Sans',sans-serif}
-.btn-row{display:flex;gap:8px;align-items:center}
-.char-count{font-size:11px;color:#bbb}
-.btn-primary{padding:8px 16px;background:#1877F2;color:white;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
-.btn-primary:hover{background:#1664d8}
-.btn-primary:disabled{opacity:.45;cursor:default}
-.btn-secondary{padding:8px 14px;background:transparent;border:1.5px solid #1877F2;color:#1877F2;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
-.btn-outline{padding:7px 13px;background:transparent;border:1.5px solid #e5e7eb;color:#666;border-radius:8px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif}
-.btn-outline:hover{background:#f4f5f7}
+.scheduler-box { background: #f0f6ff; border: 2px solid #c7d7f9; border-radius: 12px; padding: 15px 17px; margin-top: 14px; }
+.scheduler-title { font-size: 12px; font-weight: 700; color: #1877F2; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 13px; }
+.scheduler-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.scheduler-input { flex: 1; min-width: 180px; padding: 8px 11px; font-size: 13px; border: 1.5px solid #c7d7f9; border-radius: 8px; background: #fff; color: #1a1a2e; font-family: 'DM Sans', sans-serif; }
+.scheduler-hint { font-size: 11px; color: #93b4e8; margin-top: 9px; }
 
-/* Post cards */
-.post-card{background:#fff;border-radius:12px;box-shadow:0 1px 5px rgba(0,0,0,.05);padding:1rem 1.25rem;margin-bottom:10px;border:1px solid #f0f0f0}
-.post-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.post-meta{font-size:11px;color:#bbb}
-.badges{display:flex;gap:5px}
-.badge{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600}
-.badge-pub{background:#d4edda;color:#1a6630}
-.badge-sched{background:#d0e8ff;color:#0050a0}
-.badge-reel{background:#ede0ff;color:#6c35be}
-.post-text{font-size:13px;color:#333;line-height:1.55;margin-bottom:9px;white-space:pre-wrap}
-.post-stats{display:flex;gap:16px;font-size:11px;color:#aaa;margin-bottom:8px}
-.post-actions{display:flex;gap:7px}
-.action-btn{padding:5px 10px;font-size:11px;border:1px solid #e5e7eb;border-radius:7px;background:transparent;color:#888;cursor:pointer;font-family:'DM Sans',sans-serif}
-.action-btn:hover{background:#f4f5f7}
+.btn-primary { padding: 8px 16px; background: #1877F2; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.btn-primary:hover { background: #1664d8; }
+.btn-primary:disabled { opacity: .45; cursor: default; }
+.btn-secondary { padding: 8px 14px; background: transparent; border: 1.5px solid #1877F2; color: #1877F2; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.btn-outline { padding: 7px 13px; background: transparent; border: 1.5px solid #e5e7eb; color: #666; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.btn-outline:hover { background: #f4f5f7; }
 
-/* Comments */
-.comments-section{margin-top:11px;border-top:1px solid #f0f0f0;padding-top:11px;display:none}
-.comment-item{display:flex;gap:9px;margin-bottom:10px}
-.c-avatar{width:28px;height:28px;border-radius:50%;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#1d4ed8;flex-shrink:0}
-.c-bubble{background:#f8f9fa;border-radius:10px;padding:8px 11px;flex:1}
-.c-author{font-size:11px;font-weight:600;color:#1a1a2e;margin-bottom:2px}
-.c-text{font-size:12px;color:#444;line-height:1.4}
-.c-time{font-size:10px;color:#bbb;margin-top:3px}
-.reply-row{display:flex;gap:7px;margin-top:9px}
-.reply-row input{flex:1;padding:7px 10px;font-size:12px;border:1.5px solid #e5e7eb;border-radius:8px;background:#fff;color:#1a1a2e;font-family:'DM Sans',sans-serif}
-.reply-row input:focus{outline:none;border-color:#1877F2}
-.reply-send{padding:7px 13px;background:#1877F2;color:white;border:none;border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500}
+.post-card { background: #fff; border-radius: 12px; box-shadow: 0 1px 5px rgba(0,0,0,.05); padding: 1rem 1.25rem; margin-bottom: 10px; border: 1px solid #f0f0f0; }
+.post-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.post-meta { font-size: 11px; color: #bbb; }
+.badges { display: flex; gap: 5px; }
+.badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; font-weight: 600; }
+.badge-pub { background: #d4edda; color: #1a6630; }
+.badge-sched { background: #d0e8ff; color: #0050a0; }
+.badge-reel { background: #ede0ff; color: #6c35be; }
+.post-text { font-size: 13px; color: #333; line-height: 1.55; margin-bottom: 9px; white-space: pre-wrap; }
+.post-stats { display: flex; gap: 16px; font-size: 11px; color: #aaa; margin-bottom: 8px; }
+.post-actions { display: flex; gap: 7px; }
+.action-btn { padding: 5px 10px; font-size: 11px; border: 1px solid #e5e7eb; border-radius: 7px; background: transparent; color: #888; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.action-btn:hover { background: #f4f5f7; }
 
-/* Drive / Reels */
-.drive-search-row{display:flex;gap:9px;margin-bottom:11px}
-.drive-search-row input{flex:1;padding:9px 13px;font-size:13px;border:1.5px solid #e5e7eb;border-radius:10px;background:#fafafa;color:#1a1a2e;font-family:'DM Sans',sans-serif;transition:border .2s}
-.drive-search-row input:focus{outline:none;border-color:#1877F2;background:#fff}
-.drive-file{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border:1px solid #e5e7eb;border-radius:10px;margin-bottom:7px;background:#fff;cursor:pointer;transition:all .2s}
-.drive-file:hover{background:#f0f5ff;border-color:#c7d7f9}
-.drive-file.posted{opacity:.5;cursor:default;background:#fafafa}
-.drive-file-left{display:flex;align-items:center;gap:10px}
-.drive-icon{width:30px;height:30px;border-radius:8px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.drive-icon svg{width:16px;height:16px}
-.drive-name{font-size:13px;color:#1a1a2e;font-weight:500}
-.drive-size{font-size:11px;color:#aaa;margin-top:1px}
-.posted-badge{font-size:10px;padding:3px 8px;border-radius:20px;background:#d4edda;color:#1a6630;font-weight:600}
-.select-badge{font-size:10px;padding:3px 8px;border-radius:20px;background:#d0e8ff;color:#0050a0;font-weight:600}
+.comments-section { margin-top: 11px; border-top: 1px solid #f0f0f0; padding-top: 11px; display: none; }
+.comment-item { display: flex; gap: 9px; margin-bottom: 10px; }
+.c-avatar { width: 28px; height: 28px; border-radius: 50%; background: #dbeafe; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: #1d4ed8; flex-shrink: 0; }
+.c-bubble { background: #f8f9fa; border-radius: 10px; padding: 8px 11px; flex: 1; }
+.c-author { font-size: 11px; font-weight: 600; color: #1a1a2e; margin-bottom: 2px; }
+.c-text { font-size: 12px; color: #444; line-height: 1.4; }
+.c-time { font-size: 10px; color: #bbb; margin-top: 3px; }
+.reply-row { display: flex; gap: 7px; margin-top: 9px; }
+.reply-row input { flex: 1; padding: 7px 10px; font-size: 12px; border: 1.5px solid #e5e7eb; border-radius: 8px; background: #fff; color: #1a1a2e; font-family: 'DM Sans', sans-serif; }
+.reply-row input:focus { outline: none; border-color: #1877F2; }
+.reply-send { padding: 7px 13px; background: #1877F2; color: white; border: none; border-radius: 8px; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; }
 
-.reel-form{background:#f8f9fa;border:1px solid #e5e7eb;border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:14px}
-.reel-form-title{font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between}
-.reel-form textarea{width:100%;min-height:70px;padding:9px 12px;font-size:13px;border:1.5px solid #e5e7eb;border-radius:9px;background:#fff;color:#1a1a2e;resize:vertical;font-family:'DM Sans',sans-serif;margin-bottom:9px;transition:border .2s}
-.reel-form textarea:focus{outline:none;border-color:#1877F2}
-.reel-form input[type=text]{width:100%;padding:8px 11px;font-size:13px;border:1.5px solid #e5e7eb;border-radius:9px;background:#fff;color:#1a1a2e;margin-bottom:5px;font-family:'DM Sans',sans-serif}
-.reel-form input[type=text]:focus{outline:none;border-color:#1877F2}
-.reel-form-footer{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-top:10px}
-.warn-box{background:#fff8e1;border:1px solid #f9c83a;border-radius:9px;padding:9px 12px;font-size:12px;color:#7a5c00;margin-bottom:10px;display:none}
+.drive-search-row { display: flex; gap: 9px; margin-bottom: 11px; }
+.drive-search-row input { flex: 1; padding: 9px 13px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: #fafafa; color: #1a1a2e; font-family: 'DM Sans', sans-serif; }
+.drive-search-row input:focus { outline: none; border-color: #1877F2; background: #fff; }
+.drive-file { display: flex; align-items: center; justify-content: space-between; padding: 10px 13px; border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 7px; background: #fff; cursor: pointer; }
+.drive-file:hover { background: #f0f5ff; border-color: #c7d7f9; }
+.drive-file.posted { opacity: .5; cursor: default; background: #fafafa; }
+.drive-file-left { display: flex; align-items: center; gap: 10px; }
+.drive-icon { width: 30px; height: 30px; border-radius: 8px; background: #e8f0fe; display: flex; align-items: center; justify-content: center; }
+.drive-name { font-size: 13px; color: #1a1a2e; font-weight: 500; }
+.drive-size { font-size: 11px; color: #aaa; margin-top: 1px; }
+.posted-badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: #d4edda; color: #1a6630; font-weight: 600; }
+.select-badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: #d0e8ff; color: #0050a0; font-weight: 600; }
 
-/* Description modal */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:100;padding:1rem}
-.modal{background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.15);padding:1.75rem;width:100%;max-width:420px}
-.modal h3{font-size:16px;font-weight:600;color:#1a1a2e;margin-bottom:5px}
-.modal p{font-size:13px;color:#666;margin-bottom:14px;line-height:1.6}
-.modal textarea{width:100%;min-height:120px;padding:10px 13px;font-size:13px;border:1.5px solid #e5e7eb;border-radius:10px;background:#fafafa;color:#1a1a2e;resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.55;margin-bottom:7px;transition:border .2s}
-.modal textarea:focus{outline:none;border-color:#1877F2;background:#fff}
-.modal-char{font-size:11px;color:#bbb;margin-bottom:12px}
-.modal-footer{display:flex;justify-content:flex-end;gap:9px}
+.reel-form { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 14px; }
+.reel-form-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 11px; display: flex; align-items: center; justify-content: space-between; }
+.reel-form textarea { width: 100%; min-height: 70px; padding: 9px 12px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 9px; background: #fff; color: #1a1a2e; resize: vertical; font-family: 'DM Sans', sans-serif; margin-bottom: 9px; }
+.reel-form textarea:focus { outline: none; border-color: #1877F2; }
+.reel-form input[type="text"] { width: 100%; padding: 8px 11px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 9px; background: #fff; color: #1a1a2e; margin-bottom: 5px; font-family: 'DM Sans', sans-serif; }
+.reel-form input[type="text"]:focus { outline: none; border-color: #1877F2; }
+.reel-form-footer { display: flex; align-items: center; justify-content: space-between; gap: 9px; flex-wrap: wrap; margin-top: 10px; }
+.warn-box { background: #fff8e1; border: 1px solid #f9c83a; border-radius: 9px; padding: 9px 12px; font-size: 12px; color: #7a5c00; margin-bottom: 10px; display: none; }
 
-/* Analytics */
-.analytics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
-.metric-card{background:#fff;border-radius:12px;box-shadow:0 1px 5px rgba(0,0,0,.05);padding:1rem 1.1rem;border:1px solid #f0f0f0}
-.metric-label{font-size:11px;color:#aaa;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
-.metric-value{font-size:24px;font-weight:600;color:#1a1a2e}
-.metric-change{font-size:11px;margin-top:3px}
-.up{color:#1a6630}.down{color:#c53030}
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); display: none; align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
+.modal { background: #fff; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,.15); padding: 1.75rem; width: 100%; max-width: 420px; }
+.modal h3 { font-size: 16px; font-weight: 600; color: #1a1a2e; margin-bottom: 5px; }
+.modal p { font-size: 13px; color: #666; margin-bottom: 14px; line-height: 1.6; }
+.modal textarea { width: 100%; min-height: 120px; padding: 10px 13px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: #fafafa; color: #1a1a2e; resize: vertical; font-family: 'DM Sans', sans-serif; line-height: 1.55; margin-bottom: 7px; }
+.modal textarea:focus { outline: none; border-color: #1877F2; background: #fff; }
+.modal-char { font-size: 11px; color: #bbb; margin-bottom: 12px; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 9px; }
 
-/* Toast */
-#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(60px);background:#1a1a2e;border-radius:10px;padding:10px 20px;font-size:13px;color:#fff;opacity:0;transition:all .3s;z-index:200;white-space:nowrap;pointer-events:none}
-#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.metric-card { background: #fff; border-radius: 12px; box-shadow: 0 1px 5px rgba(0,0,0,.05); padding: 1rem 1.1rem; border: 1px solid #f0f0f0; }
+.metric-label { font-size: 11px; color: #aaa; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+.metric-value { font-size: 24px; font-weight: 600; color: #1a1a2e; }
+.metric-change { font-size: 11px; margin-top: 3px; }
+.up { color: #1a6630; }
+.down { color: #c53030; }
 
-.empty-state{text-align:center;padding:2rem;color:#bbb;font-size:13px}
+#toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(60px); background: #1a1a2e; border-radius: 10px; padding: 10px 20px; font-size: 13px; color: #fff; opacity: 0; transition: all .3s; z-index: 200; white-space: nowrap; pointer-events: none; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.empty-state { text-align: center; padding: 2rem; color: #bbb; font-size: 13px; }
 </style>
 </head>
 <body>
 
-<div id="app">
-  <div id="setup-screen">
-    <div class="setup-card">
-      <div class="fb-logo"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
-      <h2>Facebook Page Manager</h2>
-      <p>Connect your Facebook pages and Google Drive to manage posts, schedule reels, and keep everything organised.</p>
-      <div class="field-label">Facebook Page Access Token</div>
-      <input type="password" id="fb-token" placeholder="EAAxxxxxxxxxxxxxxx..." />
-      <div id="fb-err" class="err">Please enter your Facebook access token</div>
-      <div class="field-label">Google Drive API Key (for Reels)</div>
-      <input type="password" id="drive-token" placeholder="AIzaSy..." />
-      <button class="connect-btn" onclick="connectApp()">Connect &rarr;</button>
-      <a class="help-link" href="https://developers.facebook.com" target="_blank">How do I get these credentials? &rarr;</a>
+<div id="setup-screen">
+  <div class="setup-card">
+    <div class="fb-logo">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </div>
+    <h2>Facebook Page Manager</h2>
+    <p>Connect your Facebook pages and Google Drive to manage posts, schedule reels, and keep everything organised.</p>
+    <div class="field-label">Facebook Page Access Token</div>
+    <input type="password" id="fb-token" placeholder="EAAxxxxxxxxxxxxxxx..." />
+    <div id="fb-err" class="err">Please enter your Facebook access token</div>
+    <div class="field-label">Google Drive API Key (for Reels)</div>
+    <input type="password" id="drive-token" placeholder="AIzaSy..." />
+    <button class="connect-btn" onclick="connectApp()">Connect</button>
+    <a class="help-link" href="https://developers.facebook.com" target="_blank">How do I get these credentials?</a>
+  </div>
+</div>
+
+<div id="main-app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="fb-dot">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </div>
+      <select id="page-select" onchange="switchPage()"></select>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <button class="tab-btn active" onclick="switchTab('posts',this)">Posts</button>
+      <button class="tab-btn" onclick="switchTab('reels',this)">Reels</button>
+      <button class="tab-btn" onclick="switchTab('analytics',this)">Analytics</button>
+      <button class="disco-btn" onclick="disconnect()">Disconnect</button>
     </div>
   </div>
 
-  <div id="main-app">
-    <div class="topbar">
-      <div class="topbar-left">
-        <div class="fb-dot"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
-        <select id="page-select" onchange="switchPage()"></select>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <div class="tabs">
-          <button class="tab-btn active" onclick="switchTab('posts',this)">Posts</button>
-          <button class="tab-btn" onclick="switchTab('reels',this)">Reels</button>
-          <button class="tab-btn" onclick="switchTab('analytics',this)">Analytics</button>
-        </div>
-        <button class="disco-btn" onclick="disconnect()">Disconnect</button>
-      </div>
-    </div>
+  <div class="content">
 
-    <div class="content">
-
-      <!-- POSTS TAB -->
-      <div id="tab-posts">
-        <div id="desc-banner" class="desc-banner">
-          <div class="desc-banner-text"><strong>Page description:</strong> <span id="desc-preview"></span></div>
-          <button class="desc-edit-btn" onclick="openDescModal()">Edit</button>
+    <div id="tab-posts">
+      <div class="desc-card">
+        <div class="desc-card-header">
+          <div class="desc-card-label">
+            Page Description
+            <span class="desc-pill">per page</span>
+          </div>
+          <button class="desc-edit-btn" onclick="openDescModal()">Edit Description</button>
         </div>
-        <div class="card compose-card">
-          <div class="card-title">Create post</div>
-          <textarea id="post-text" placeholder="Write your post..." oninput="updateCharCount()"></textarea>
-          <div class="compose-hint">Your saved page description will be appended automatically.</div>
-          <div class="compose-footer">
-            <div class="schedule-row">
-              <label>Schedule:</label>
-              <input type="datetime-local" id="schedule-time" />
-            </div>
-            <div class="btn-row">
-              <span class="char-count" id="char-count">0 / 63,206</span>
+        <div id="desc-content" style="font-size:13px;color:#444;line-height:1.55;display:none"></div>
+        <div id="desc-empty" style="font-size:13px;color:#bbb;font-style:italic">No description set yet. Click "Edit Description" to add one. It will be appended to every post automatically.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Create post</div>
+        <textarea class="compose-textarea" id="post-text" placeholder="Write your post content here..." oninput="updateCharCount()"></textarea>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;margin-bottom:0">
+          <span style="font-size:11px;color:#bbb" id="char-count">0 / 63,206</span>
+          <span style="font-size:11px;color:#aaa">Page description auto-appended below</span>
+        </div>
+        <div class="scheduler-box">
+          <div class="scheduler-title">Scheduler &amp; Publish</div>
+          <div class="scheduler-row">
+            <span style="font-size:13px;font-weight:600;color:#444;white-space:nowrap">Schedule for:</span>
+            <input type="datetime-local" id="schedule-time" class="scheduler-input" />
+            <div style="display:flex;gap:9px">
               <button class="btn-secondary" onclick="schedulePost()">Schedule</button>
               <button class="btn-primary" onclick="publishPost()">Publish now</button>
             </div>
           </div>
+          <div class="scheduler-hint">Leave date empty and click "Publish now" to post immediately.</div>
         </div>
-        <div class="section-label">Recent posts</div>
-        <div id="posts-list"></div>
       </div>
 
-      <!-- REELS TAB -->
-      <div id="tab-reels" style="display:none">
-        <div class="card">
-          <div class="card-title">Search reels in Google Drive</div>
-          <div class="drive-search-row">
-            <input type="text" id="drive-search" placeholder="Type filename to search..." oninput="searchDrive()" />
-          </div>
-          <div id="drive-results"></div>
-          <div id="drive-empty" class="empty-state" style="display:none">No files found. Try a different name.</div>
-        </div>
-
-        <div id="reel-form-wrap" style="display:none">
-          <div class="reel-form">
-            <div class="reel-form-title">
-              <span>Schedule: <span id="selected-reel-name" style="color:#888;font-weight:400;font-size:12px"></span></span>
-              <button class="btn-outline" style="font-size:11px;padding:4px 9px" onclick="clearReelForm()">Clear</button>
-            </div>
-            <div id="already-posted-warn" class="warn-box">⚠️ This reel has already been posted. Scheduling blocked to prevent duplicates.</div>
-            <div class="field-label" style="margin-bottom:6px">Caption</div>
-            <textarea id="reel-caption" placeholder="Write a caption for this reel..."></textarea>
-            <div class="field-label" style="margin-bottom:6px">Hashtags</div>
-            <input type="text" id="reel-hashtags" placeholder="#travel #lifestyle #explore" />
-            <div style="font-size:11px;color:#aaa;margin-bottom:2px">Separate with spaces — appended below caption automatically.</div>
-            <div class="reel-form-footer">
-              <div class="schedule-row">
-                <label>Schedule time:</label>
-                <input type="datetime-local" id="reel-schedule-time" />
-              </div>
-              <button class="btn-primary" id="reel-submit-btn" onclick="scheduleReel()">Schedule reel</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-label">Scheduled reels</div>
-        <div id="reels-list"></div>
-      </div>
-
-      <!-- ANALYTICS TAB -->
-      <div id="tab-analytics" style="display:none">
-        <div class="analytics-grid" id="analytics-grid"></div>
-        <div class="section-label">Top posts by reach</div>
-        <div id="analytics-posts"></div>
-      </div>
-
+      <div class="section-label">Recent posts</div>
+      <div id="posts-list"></div>
     </div>
+
+    <div id="tab-reels" style="display:none">
+      <div class="card">
+        <div class="card-title">Search reels in Google Drive</div>
+        <div class="drive-search-row">
+          <input type="text" id="drive-search" placeholder="Type filename to search..." oninput="searchDrive()" />
+        </div>
+        <div id="drive-results"></div>
+        <div id="drive-empty" class="empty-state" style="display:none">No files found. Try a different name.</div>
+      </div>
+
+      <div id="reel-form-wrap" style="display:none">
+        <div class="reel-form">
+          <div class="reel-form-title">
+            <span>Schedule reel: <span id="selected-reel-name" style="color:#888;font-weight:400;font-size:12px"></span></span>
+            <button class="btn-outline" style="font-size:11px;padding:4px 9px" onclick="clearReelForm()">Clear</button>
+          </div>
+          <div id="already-posted-warn" class="warn-box">This reel has already been posted. Scheduling is blocked to prevent duplicates.</div>
+          <div class="field-label" style="margin-bottom:6px">Caption</div>
+          <textarea id="reel-caption" placeholder="Write a caption for this reel..."></textarea>
+          <div class="field-label" style="margin-bottom:6px">Hashtags</div>
+          <input type="text" id="reel-hashtags" placeholder="#travel #lifestyle #explore" />
+          <div style="font-size:11px;color:#aaa;margin-bottom:2px">Separate with spaces. Appended below caption automatically.</div>
+          <div class="reel-form-footer">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="font-size:13px;font-weight:600;color:#444">Schedule time:</span>
+              <input type="datetime-local" id="reel-schedule-time" style="padding:7px 10px;font-size:13px;border:1.5px solid #c7d7f9;border-radius:8px;background:#fff;color:#1a1a2e;font-family:'DM Sans',sans-serif" />
+            </div>
+            <button class="btn-primary" id="reel-submit-btn" onclick="scheduleReel()">Schedule reel</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">Scheduled reels</div>
+      <div id="reels-list"></div>
+    </div>
+
+    <div id="tab-analytics" style="display:none">
+      <div class="analytics-grid" id="analytics-grid"></div>
+      <div class="section-label">Top posts by reach</div>
+      <div id="analytics-posts"></div>
+    </div>
+
   </div>
 </div>
 
-<!-- Description modal -->
 <div class="modal-overlay" id="desc-modal">
   <div class="modal">
     <h3>Page description</h3>
@@ -272,257 +268,531 @@ body{font-family:'DM Sans',sans-serif;background:#f4f5f7;color:#1a1a2e;min-heigh
 <div id="toast"></div>
 
 <script>
-let state={token:'',driveToken:'',pages:[],currentPageIndex:0,posts:{},descriptions:{},reels:{},driveFiles:[]};
-
-const samplePages=[
-  {id:'111222333',name:'My Business Page',category:'Local Business',followers:4820},
-  {id:'444555666',name:'Coffee & Co.',category:'Food & Beverage',followers:12340},
-];
-
-const sampleDriveFiles=[
-  {id:'file001',name:'summer_promo_reel.mp4',size:'48 MB',duration:'0:28'},
-  {id:'file002',name:'product_launch_v2.mp4',size:'62 MB',duration:'0:45'},
-  {id:'file003',name:'behind_the_scenes_june.mp4',size:'31 MB',duration:'0:20'},
-  {id:'file004',name:'customer_story_amira.mp4',size:'55 MB',duration:'0:38'},
-  {id:'file005',name:'weekly_tip_003.mp4',size:'22 MB',duration:'0:15'},
-  {id:'file006',name:'grand_opening_recap.mp4',size:'78 MB',duration:'1:02'},
-];
-
-const sampleComments={
-  p1:[{id:'c1',author:'Sarah M.',initials:'SM',text:"This looks amazing! Can't wait to try it.",time:'2h ago'},{id:'c2',author:'James K.',initials:'JK',text:'Great content as always!',time:'1h ago'}],
-  p2:[{id:'c3',author:'Priya L.',initials:'PL',text:'Love this update!',time:'5h ago'}],
-  p3:[]
+var state = {
+  token: '',
+  driveToken: '',
+  pages: [],
+  currentPageIndex: 0,
+  posts: {},
+  descriptions: {},
+  reels: {},
+  driveFiles: []
 };
 
-function getSamplePosts(){
+var samplePages = [
+  { id: 'pg1', name: 'My Business Page', followers: 4820 },
+  { id: 'pg2', name: 'Coffee and Co.', followers: 12340 }
+];
+
+var sampleDriveFiles = [
+  { id: 'f1', name: 'summer_promo_reel.mp4', size: '48 MB', duration: '0:28' },
+  { id: 'f2', name: 'product_launch_v2.mp4', size: '62 MB', duration: '0:45' },
+  { id: 'f3', name: 'behind_the_scenes_june.mp4', size: '31 MB', duration: '0:20' },
+  { id: 'f4', name: 'customer_story_amira.mp4', size: '55 MB', duration: '0:38' },
+  { id: 'f5', name: 'weekly_tip_003.mp4', size: '22 MB', duration: '0:15' },
+  { id: 'f6', name: 'grand_opening_recap.mp4', size: '78 MB', duration: '1:02' }
+];
+
+var sampleComments = {
+  'p1': [
+    { id: 'c1', author: 'Sarah M.', initials: 'SM', text: 'This looks amazing!', time: '2h ago' },
+    { id: 'c2', author: 'James K.', initials: 'JK', text: 'Great content!', time: '1h ago' }
+  ],
+  'p2': [{ id: 'c3', author: 'Priya L.', initials: 'PL', text: 'Love this update!', time: '5h ago' }],
+  'p3': []
+};
+
+function makeSamplePosts() {
   return [
-    {id:'p1',text:'Excited to announce our new summer menu — fresh ingredients, bold flavors. Come visit us this weekend!',time:'Jun 12, 2:30 PM',status:'published',likes:248,reach:3200,type:'post'},
-    {id:'p2',text:'Thanks to everyone who joined our community event last Saturday. You make this all worthwhile.',time:'Jun 8, 11:00 AM',status:'published',likes:192,reach:2870,type:'post'},
-    {id:'p3',text:'Big news coming soon — stay tuned!',time:'Jun 20, 9:00 AM',status:'scheduled',likes:0,reach:0,type:'post'},
+    { id: 'p1', text: 'Excited to announce our new summer menu. Come visit us this weekend!', time: 'Jun 12, 2:30 PM', status: 'published', likes: 248, reach: 3200, type: 'post' },
+    { id: 'p2', text: 'Thanks to everyone who joined our community event last Saturday.', time: 'Jun 8, 11:00 AM', status: 'published', likes: 192, reach: 2870, type: 'post' },
+    { id: 'p3', text: 'Big news coming soon, stay tuned!', time: 'Jun 20, 9:00 AM', status: 'scheduled', likes: 0, reach: 0, type: 'post' }
   ];
 }
 
-function connectApp(){
-  const t=document.getElementById('fb-token').value.trim();
-  const err=document.getElementById('fb-err');
-  if(!t){err.style.display='block';return;}
-  err.style.display='none';
-  state.token=t;
-  state.driveToken=document.getElementById('drive-token').value.trim();
-  state.pages=samplePages;
-  state.driveFiles=sampleDriveFiles;
-  state.pages.forEach(p=>{state.posts[p.id]=getSamplePosts();state.descriptions[p.id]='';state.reels[p.id]=[];});
-  document.getElementById('setup-screen').style.display='none';
-  document.getElementById('main-app').style.display='flex';
-  const sel=document.getElementById('page-select');
-  sel.innerHTML=state.pages.map((p,i)=>`<option value="${i}">${p.name}</option>`).join('');
+function connectApp() {
+  var t = document.getElementById('fb-token').value.trim();
+  var errEl = document.getElementById('fb-err');
+  if (!t) {
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+  state.token = t;
+  state.driveToken = document.getElementById('drive-token').value.trim();
+  state.pages = samplePages;
+  state.driveFiles = sampleDriveFiles;
+  var i;
+  for (i = 0; i < state.pages.length; i++) {
+    var pid = state.pages[i].id;
+    state.posts[pid] = makeSamplePosts();
+    state.descriptions[pid] = '';
+    state.reels[pid] = [];
+  }
+  document.getElementById('setup-screen').style.display = 'none';
+  document.getElementById('main-app').style.display = 'flex';
+  var sel = document.getElementById('page-select');
+  var opts = '';
+  for (i = 0; i < state.pages.length; i++) {
+    opts += '<option value="' + i + '">' + esc(state.pages[i].name) + '</option>';
+  }
+  sel.innerHTML = opts;
   renderAll();
-  showToast('Connected! Showing demo data.');
+  showToast('Connected. Showing demo data.');
 }
 
-function disconnect(){
-  document.getElementById('setup-screen').style.display='flex';
-  document.getElementById('main-app').style.display='none';
-  document.getElementById('fb-token').value='';
-  document.getElementById('drive-token').value='';
+function disconnect() {
+  document.getElementById('setup-screen').style.display = 'flex';
+  document.getElementById('main-app').style.display = 'none';
+  document.getElementById('fb-token').value = '';
+  document.getElementById('drive-token').value = '';
 }
 
-function switchPage(){state.currentPageIndex=parseInt(document.getElementById('page-select').value);renderAll();}
-function currentPage(){return state.pages[state.currentPageIndex];}
-function currentPosts(){return state.posts[currentPage().id]||[];}
-function currentReels(){return state.reels[currentPage().id]||[];}
-function currentDesc(){return state.descriptions[currentPage().id]||'';}
+function switchPage() {
+  state.currentPageIndex = parseInt(document.getElementById('page-select').value, 10);
+  renderAll();
+}
 
-function switchTab(tab,btn){
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+function pg() { return state.pages[state.currentPageIndex]; }
+function pgPosts() { return state.posts[pg().id] || []; }
+function pgReels() { return state.reels[pg().id] || []; }
+function pgDesc() { return state.descriptions[pg().id] || ''; }
+
+function switchTab(tab, btn) {
+  var all = document.querySelectorAll('.tab-btn');
+  var i;
+  for (i = 0; i < all.length; i++) all[i].classList.remove('active');
   btn.classList.add('active');
-  ['posts','reels','analytics'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===tab?'':'none';});
-  if(tab==='analytics')renderAnalytics();
+  var names = ['posts', 'reels', 'analytics'];
+  for (i = 0; i < names.length; i++) {
+    document.getElementById('tab-' + names[i]).style.display = names[i] === tab ? '' : 'none';
+  }
+  if (tab === 'analytics') renderAnalytics();
 }
 
-function renderAll(){renderDescBanner();renderPosts();renderReels();}
-
-function renderDescBanner(){
-  const d=currentDesc();
-  const prev=document.getElementById('desc-preview');
-  if(d){prev.textContent=d.length>90?d.slice(0,90)+'…':d;}
-  else{prev.innerHTML='<em style="color:#bbb">No description set — click Edit to add one.</em>';}
+function renderAll() {
+  renderDesc();
+  renderPosts();
+  renderReels();
+  document.getElementById('drive-results').innerHTML = '';
+  document.getElementById('drive-search').value = '';
+  document.getElementById('reel-form-wrap').style.display = 'none';
 }
 
-function openDescModal(){
-  document.getElementById('desc-textarea').value=currentDesc();
+function renderDesc() {
+  var d = pgDesc();
+  var contentEl = document.getElementById('desc-content');
+  var emptyEl = document.getElementById('desc-empty');
+  if (d) {
+    contentEl.textContent = d;
+    contentEl.style.display = 'block';
+    emptyEl.style.display = 'none';
+  } else {
+    contentEl.style.display = 'none';
+    emptyEl.style.display = 'block';
+  }
+}
+
+function openDescModal() {
+  document.getElementById('desc-textarea').value = pgDesc();
   updateDescChar();
-  document.getElementById('desc-modal').style.display='flex';
-}
-function closeDescModal(){document.getElementById('desc-modal').style.display='none';}
-function updateDescChar(){document.getElementById('desc-char').textContent=document.getElementById('desc-textarea').value.length+' characters';}
-function saveDescription(){
-  state.descriptions[currentPage().id]=document.getElementById('desc-textarea').value.trim();
-  closeDescModal();renderDescBanner();showToast('Description saved!');
+  document.getElementById('desc-modal').style.display = 'flex';
 }
 
-function updateCharCount(){
-  const len=document.getElementById('post-text').value.length;
-  document.getElementById('char-count').textContent=len+' / 63,206';
+function closeDescModal() {
+  document.getElementById('desc-modal').style.display = 'none';
 }
 
-function buildFullPost(text){const d=currentDesc();return d?text+'\n\n'+d:text;}
-
-function publishPost(){
-  const text=document.getElementById('post-text').value.trim();
-  if(!text){showToast('Please write something first.');return;}
-  const pid=currentPage().id;
-  const np={id:'p'+Date.now(),text:buildFullPost(text),time:new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}),status:'published',likes:0,reach:0,type:'post'};
-  state.posts[pid].unshift(np);sampleComments[np.id]=[];
-  document.getElementById('post-text').value='';document.getElementById('schedule-time').value='';updateCharCount();
-  renderPosts();showToast('Post published!');
+function updateDescChar() {
+  var len = document.getElementById('desc-textarea').value.length;
+  document.getElementById('desc-char').textContent = len + ' characters';
 }
 
-function schedulePost(){
-  const text=document.getElementById('post-text').value.trim();
-  const t=document.getElementById('schedule-time').value;
-  if(!text){showToast('Please write something first.');return;}
-  if(!t){showToast('Please pick a schedule time.');return;}
-  const label=new Date(t).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
-  const pid=currentPage().id;
-  const np={id:'p'+Date.now(),text:buildFullPost(text),time:label,status:'scheduled',likes:0,reach:0,type:'post'};
-  state.posts[pid].unshift(np);sampleComments[np.id]=[];
-  document.getElementById('post-text').value='';document.getElementById('schedule-time').value='';updateCharCount();
-  renderPosts();showToast('Scheduled for '+label);
+function saveDescription() {
+  state.descriptions[pg().id] = document.getElementById('desc-textarea').value.trim();
+  closeDescModal();
+  renderDesc();
+  showToast('Description saved!');
 }
 
-function renderPosts(){
-  const list=document.getElementById('posts-list');
-  const posts=currentPosts();
-  if(!posts.length){list.innerHTML='<div class="empty-state">No posts yet.</div>';return;}
-  list.innerHTML=posts.map(p=>`
-    <div class="post-card">
-      <div class="post-header">
-        <span class="post-meta">${p.time}${p.type==='reel'?' &middot; Reel':''}</span>
-        <div class="badges">${p.type==='reel'?'<span class="badge badge-reel">Reel</span>':''}<span class="badge ${p.status==='published'?'badge-pub':'badge-sched'}">${p.status==='published'?'Published':'Scheduled'}</span></div>
-      </div>
-      <div class="post-text">${escHtml(p.text)}</div>
-      ${p.status==='published'?`<div class="post-stats"><span>👍 ${p.likes}</span><span>💬 ${(sampleComments[p.id]||[]).length}</span><span>📈 ${p.reach.toLocaleString()} reach</span></div>`:`<div class="post-stats"><span style="color:#93c5fd">Waiting to go live</span></div>`}
-      <div class="post-actions">
-        ${p.status==='published'&&p.type!=='reel'?`<button class="action-btn" onclick="toggleComments('${p.id}')">Comments (${(sampleComments[p.id]||[]).length})</button>`:''}
-        <button class="action-btn" style="color:#e53e3e" onclick="deletePost('${p.id}')">Delete</button>
-      </div>
-      <div class="comments-section" id="comments-${p.id}">
-        <div id="clist-${p.id}">${renderCommentsList(p.id)}</div>
-        <div class="reply-row"><input type="text" id="ri-${p.id}" placeholder="Reply as page..." onkeydown="if(event.key==='Enter')sendReply('${p.id}')" /><button class="reply-send" onclick="sendReply('${p.id}')">Reply</button></div>
-      </div>
-    </div>`).join('');
+function updateCharCount() {
+  var len = document.getElementById('post-text').value.length;
+  document.getElementById('char-count').textContent = len + ' / 63,206';
 }
 
-function renderCommentsList(pid){
-  const cs=sampleComments[pid]||[];
-  if(!cs.length)return'<div style="font-size:12px;color:#bbb;margin-bottom:8px">No comments yet.</div>';
-  return cs.map(c=>`<div class="comment-item"><div class="c-avatar">${c.initials}</div><div class="c-bubble"><div class="c-author">${escHtml(c.author)}</div><div class="c-text">${escHtml(c.text)}</div><div class="c-time">${c.time}</div></div></div>`).join('');
+function withDesc(text) {
+  var d = pgDesc();
+  return d ? text + '\n\n' + d : text;
 }
 
-function toggleComments(pid){const el=document.getElementById('comments-'+pid);el.style.display=el.style.display==='block'?'none':'block';}
-function sendReply(pid){
-  const inp=document.getElementById('ri-'+pid);const t=inp.value.trim();if(!t)return;
-  if(!sampleComments[pid])sampleComments[pid]=[];
-  sampleComments[pid].push({id:'c'+Date.now(),author:currentPage().name,initials:currentPage().name.slice(0,2).toUpperCase(),text:t,time:'Just now'});
-  inp.value='';document.getElementById('clist-'+pid).innerHTML=renderCommentsList(pid);showToast('Reply posted!');
-}
-function deletePost(pid){const pageid=currentPage().id;state.posts[pageid]=state.posts[pageid].filter(p=>p.id!==pid);renderPosts();showToast('Post deleted.');}
-
-let selectedFile=null;
-function getPostedReelIds(){const ids=new Set();Object.values(state.reels).forEach(arr=>arr.forEach(r=>{if(r.fileId)ids.add(r.fileId);}));return ids;}
-
-function searchDrive(){
-  const q=document.getElementById('drive-search').value.trim().toLowerCase();
-  const resultsEl=document.getElementById('drive-results');
-  const emptyEl=document.getElementById('drive-empty');
-  if(!q){resultsEl.innerHTML='';emptyEl.style.display='none';return;}
-  const matches=state.driveFiles.filter(f=>f.name.toLowerCase().includes(q));
-  if(!matches.length){resultsEl.innerHTML='';emptyEl.style.display='block';return;}
-  emptyEl.style.display='none';
-  const postedIds=getPostedReelIds();
-  resultsEl.innerHTML=matches.map(f=>{
-    const posted=postedIds.has(f.id);
-    return`<div class="drive-file${posted?' posted':''}" onclick="${posted?'showToast(\'Already posted — blocked to prevent duplicates.\')':'selectFile(\''+f.id+'\')'}">
-      <div class="drive-file-left">
-        <div class="drive-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 2l8 14H4z" fill="#4285f4"/><path d="M12 16l8-14H12z" fill="#0f9d58"/><path d="M4 16l4 6h8l4-6" fill="#fbbc04"/></svg></div>
-        <div><div class="drive-name">${escHtml(f.name)}</div><div class="drive-size">${f.size} &middot; ${f.duration}</div></div>
-      </div>
-      ${posted?'<span class="posted-badge">Already posted</span>':'<span class="select-badge">Select</span>'}
-    </div>`;
-  }).join('');
+function publishPost() {
+  var text = document.getElementById('post-text').value.trim();
+  if (!text) { showToast('Please write something first.'); return; }
+  var pid = pg().id;
+  var np = {
+    id: 'p' + Date.now(),
+    text: withDesc(text),
+    time: new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }),
+    status: 'published',
+    likes: 0,
+    reach: 0,
+    type: 'post'
+  };
+  state.posts[pid].unshift(np);
+  sampleComments[np.id] = [];
+  document.getElementById('post-text').value = '';
+  document.getElementById('schedule-time').value = '';
+  updateCharCount();
+  renderPosts();
+  showToast('Post published!');
 }
 
-function selectFile(fileId){
-  const f=state.driveFiles.find(f=>f.id===fileId);if(!f)return;
-  selectedFile=f;
-  const alreadyPosted=getPostedReelIds().has(fileId);
-  document.getElementById('selected-reel-name').textContent=f.name;
-  document.getElementById('already-posted-warn').style.display=alreadyPosted?'block':'none';
-  document.getElementById('reel-submit-btn').disabled=alreadyPosted;
-  document.getElementById('reel-submit-btn').style.opacity=alreadyPosted?'0.45':'1';
-  document.getElementById('reel-form-wrap').style.display='block';
-  document.getElementById('reel-caption').value='';
-  document.getElementById('reel-hashtags').value='';
-  document.getElementById('reel-schedule-time').value='';
+function schedulePost() {
+  var text = document.getElementById('post-text').value.trim();
+  var t = document.getElementById('schedule-time').value;
+  if (!text) { showToast('Please write something first.'); return; }
+  if (!t) { showToast('Please pick a schedule time.'); return; }
+  var label = new Date(t).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  var pid = pg().id;
+  var np = {
+    id: 'p' + Date.now(),
+    text: withDesc(text),
+    time: label,
+    status: 'scheduled',
+    likes: 0,
+    reach: 0,
+    type: 'post'
+  };
+  state.posts[pid].unshift(np);
+  sampleComments[np.id] = [];
+  document.getElementById('post-text').value = '';
+  document.getElementById('schedule-time').value = '';
+  updateCharCount();
+  renderPosts();
+  showToast('Scheduled for ' + label);
 }
 
-function clearReelForm(){selectedFile=null;document.getElementById('reel-form-wrap').style.display='none';document.getElementById('drive-search').value='';document.getElementById('drive-results').innerHTML='';}
+function renderPosts() {
+  var list = document.getElementById('posts-list');
+  var posts = pgPosts();
+  if (!posts.length) { list.innerHTML = '<div class="empty-state">No posts yet.</div>'; return; }
+  var html = '';
+  var i;
+  for (i = 0; i < posts.length; i++) {
+    var p = posts[i];
+    var cs = sampleComments[p.id] || [];
+    var reelBadge = p.type === 'reel' ? '<span class="badge badge-reel">Reel</span>' : '';
+    var statusCls = p.status === 'published' ? 'badge-pub' : 'badge-sched';
+    var statusTxt = p.status === 'published' ? 'Published' : 'Scheduled';
+    var statsHtml;
+    if (p.status === 'published') {
+      statsHtml = '<div class="post-stats"><span>Likes: ' + p.likes + '</span><span>Comments: ' + cs.length + '</span><span>Reach: ' + p.reach.toLocaleString() + '</span></div>';
+    } else {
+      statsHtml = '<div class="post-stats"><span style="color:#93c5fd">Waiting to go live</span></div>';
+    }
+    var commentBtn = '';
+    if (p.status === 'published' && p.type !== 'reel') {
+      commentBtn = '<button class="action-btn" onclick="toggleComments(\'' + p.id + '\')">Comments (' + cs.length + ')</button>';
+    }
+    html += '<div class="post-card">'
+      + '<div class="post-header">'
+      + '<span class="post-meta">' + esc(p.time) + (p.type === 'reel' ? ' - Reel' : '') + '</span>'
+      + '<div class="badges">' + reelBadge + '<span class="badge ' + statusCls + '">' + statusTxt + '</span></div>'
+      + '</div>'
+      + '<div class="post-text">' + esc(p.text) + '</div>'
+      + statsHtml
+      + '<div class="post-actions">'
+      + commentBtn
+      + '<button class="action-btn" style="color:#e53e3e" onclick="deletePost(\'' + p.id + '\')">Delete</button>'
+      + '</div>'
+      + '<div class="comments-section" id="comments-' + p.id + '">'
+      + '<div id="clist-' + p.id + '">' + renderClist(p.id) + '</div>'
+      + '<div class="reply-row">'
+      + '<input type="text" id="ri-' + p.id + '" placeholder="Reply as page..." />'
+      + '<button class="reply-send" onclick="sendReply(\'' + p.id + '\')">Reply</button>'
+      + '</div>'
+      + '</div>'
+      + '</div>';
+  }
+  list.innerHTML = html;
 
-function scheduleReel(){
-  if(!selectedFile)return;
-  const caption=document.getElementById('reel-caption').value.trim();
-  const hashtags=document.getElementById('reel-hashtags').value.trim();
-  const t=document.getElementById('reel-schedule-time').value;
-  if(!caption){showToast('Please add a caption.');return;}
-  if(!t){showToast('Please pick a schedule time.');return;}
-  const label=new Date(t).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
-  const pid=currentPage().id;
-  const fullText=(hashtags?caption+'\n\n'+hashtags:caption)+(currentDesc()?'\n\n'+currentDesc():'');
-  const nr={id:'r'+Date.now(),fileId:selectedFile.id,fileName:selectedFile.name,text:fullText,time:label,status:'scheduled',likes:0,reach:0,type:'reel'};
-  state.reels[pid].push(nr);state.posts[pid].unshift({...nr});sampleComments[nr.id]=[];
-  renderPosts();renderReels();clearReelForm();showToast('Reel scheduled for '+label+'!');
+  for (i = 0; i < posts.length; i++) {
+    (function(pid) {
+      var inp = document.getElementById('ri-' + pid);
+      if (inp) {
+        inp.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') sendReply(pid);
+        });
+      }
+    })(posts[i].id);
+  }
 }
 
-function renderReels(){
-  const list=document.getElementById('reels-list');const reels=currentReels();
-  if(!reels.length){list.innerHTML='<div class="empty-state">No reels scheduled yet. Search Drive to pick one.</div>';return;}
-  list.innerHTML=reels.map(r=>`
-    <div class="post-card">
-      <div class="post-header">
-        <span class="post-meta">${r.time}</span>
-        <div class="badges"><span class="badge badge-reel">Reel</span><span class="badge ${r.status==='published'?'badge-pub':'badge-sched'}">${r.status==='published'?'Published':'Scheduled'}</span></div>
-      </div>
-      <div style="font-size:11px;color:#aaa;margin-bottom:6px">📁 ${escHtml(r.fileName)}</div>
-      <div class="post-text">${escHtml(r.text.length>130?r.text.slice(0,130)+'…':r.text)}</div>
-      <div class="post-actions"><button class="action-btn" style="color:#e53e3e" onclick="deleteReel('${r.id}')">Delete</button></div>
-    </div>`).join('');
+function renderClist(pid) {
+  var cs = sampleComments[pid] || [];
+  if (!cs.length) return '<div style="font-size:12px;color:#bbb;margin-bottom:8px">No comments yet.</div>';
+  var html = '';
+  var i;
+  for (i = 0; i < cs.length; i++) {
+    var c = cs[i];
+    html += '<div class="comment-item">'
+      + '<div class="c-avatar">' + esc(c.initials) + '</div>'
+      + '<div class="c-bubble">'
+      + '<div class="c-author">' + esc(c.author) + '</div>'
+      + '<div class="c-text">' + esc(c.text) + '</div>'
+      + '<div class="c-time">' + esc(c.time) + '</div>'
+      + '</div></div>';
+  }
+  return html;
 }
 
-function deleteReel(rid){
-  const pid=currentPage().id;state.reels[pid]=state.reels[pid].filter(r=>r.id!==rid);state.posts[pid]=state.posts[pid].filter(p=>p.id!==rid);renderReels();renderPosts();showToast('Reel removed.');
+function toggleComments(pid) {
+  var el = document.getElementById('comments-' + pid);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
 }
 
-function renderAnalytics(){
-  const page=currentPage();const posts=currentPosts().filter(p=>p.status==='published');
-  const totalReach=posts.reduce((a,p)=>a+p.reach,0);const totalLikes=posts.reduce((a,p)=>a+p.likes,0);
-  const totalComments=posts.reduce((a,p)=>a+(sampleComments[p.id]||[]).length,0);const reelsCount=currentReels().length;
-  document.getElementById('analytics-grid').innerHTML=`
-    <div class="metric-card"><div class="metric-label">Followers</div><div class="metric-value">${page.followers.toLocaleString()}</div><div class="metric-change up">+2.4% this week</div></div>
-    <div class="metric-card"><div class="metric-label">Total reach</div><div class="metric-value">${totalReach.toLocaleString()}</div><div class="metric-change up">+8.1%</div></div>
-    <div class="metric-card"><div class="metric-label">Total likes</div><div class="metric-value">${totalLikes.toLocaleString()}</div><div class="metric-change up">+5.3%</div></div>
-    <div class="metric-card"><div class="metric-label">Comments</div><div class="metric-value">${totalComments}</div><div class="metric-change down">-1.2%</div></div>
-    <div class="metric-card"><div class="metric-label">Reels queued</div><div class="metric-value">${reelsCount}</div><div class="metric-change up">Active</div></div>`;
-  const sorted=[...posts].sort((a,b)=>b.reach-a.reach);
-  document.getElementById('analytics-posts').innerHTML=sorted.length?sorted.map(p=>`
-    <div class="post-card">
-      <div class="post-text" style="margin-bottom:8px">${escHtml(p.text.length>110?p.text.slice(0,110)+'…':p.text)}</div>
-      <div class="post-stats"><span>📈 ${p.reach.toLocaleString()} reach</span><span>👍 ${p.likes}</span><span>💬 ${(sampleComments[p.id]||[]).length}</span></div>
-    </div>`).join(''):'<div class="empty-state">No published posts yet.</div>';
+function sendReply(pid) {
+  var inp = document.getElementById('ri-' + pid);
+  var t = inp.value.trim();
+  if (!t) return;
+  if (!sampleComments[pid]) sampleComments[pid] = [];
+  sampleComments[pid].push({
+    id: 'c' + Date.now(),
+    author: pg().name,
+    initials: pg().name.slice(0, 2).toUpperCase(),
+    text: t,
+    time: 'Just now'
+  });
+  inp.value = '';
+  document.getElementById('clist-' + pid).innerHTML = renderClist(pid);
+  showToast('Reply posted!');
 }
 
-function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+function deletePost(pid) {
+  var pageid = pg().id;
+  var arr = state.posts[pageid];
+  var out = [];
+  var i;
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i].id !== pid) out.push(arr[i]);
+  }
+  state.posts[pageid] = out;
+  renderPosts();
+  showToast('Post deleted.');
+}
+
+var selectedFile = null;
+
+function postedIds() {
+  var ids = {};
+  var keys = Object.keys(state.reels);
+  var i, j;
+  for (i = 0; i < keys.length; i++) {
+    var arr = state.reels[keys[i]];
+    for (j = 0; j < arr.length; j++) {
+      if (arr[j].fileId) ids[arr[j].fileId] = true;
+    }
+  }
+  return ids;
+}
+
+function searchDrive() {
+  var q = document.getElementById('drive-search').value.trim().toLowerCase();
+  var resEl = document.getElementById('drive-results');
+  var emEl = document.getElementById('drive-empty');
+  if (!q) { resEl.innerHTML = ''; emEl.style.display = 'none'; return; }
+  var posted = postedIds();
+  var html = '';
+  var found = 0;
+  var i;
+  for (i = 0; i < state.driveFiles.length; i++) {
+    var f = state.driveFiles[i];
+    if (f.name.toLowerCase().indexOf(q) === -1) continue;
+    found++;
+    var isPosted = !!posted[f.id];
+    html += '<div class="drive-file' + (isPosted ? ' posted' : '') + '" onclick="driveClick(\'' + f.id + '\',' + isPosted + ')">'
+      + '<div class="drive-file-left">'
+      + '<div class="drive-icon">'
+      + '<svg width="16" height="16" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 27h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>'
+      + '</div>'
+      + '<div><div class="drive-name">' + esc(f.name) + '</div><div class="drive-size">' + f.size + ' - ' + f.duration + '</div></div>'
+      + '</div>'
+      + (isPosted ? '<span class="posted-badge">Already posted</span>' : '<span class="select-badge">Select</span>')
+      + '</div>';
+  }
+  if (!found) { resEl.innerHTML = ''; emEl.style.display = 'block'; }
+  else { emEl.style.display = 'none'; resEl.innerHTML = html; }
+}
+
+function driveClick(fileId, isPosted) {
+  if (isPosted) { showToast('Already posted. Blocked to prevent duplicates.'); return; }
+  selectFile(fileId);
+}
+
+function selectFile(fileId) {
+  var f = null;
+  var i;
+  for (i = 0; i < state.driveFiles.length; i++) {
+    if (state.driveFiles[i].id === fileId) { f = state.driveFiles[i]; break; }
+  }
+  if (!f) return;
+  selectedFile = f;
+  var alreadyPosted = !!postedIds()[fileId];
+  document.getElementById('selected-reel-name').textContent = f.name;
+  document.getElementById('already-posted-warn').style.display = alreadyPosted ? 'block' : 'none';
+  document.getElementById('reel-submit-btn').disabled = alreadyPosted;
+  document.getElementById('reel-submit-btn').style.opacity = alreadyPosted ? '0.45' : '1';
+  document.getElementById('reel-form-wrap').style.display = 'block';
+  document.getElementById('reel-caption').value = '';
+  document.getElementById('reel-hashtags').value = '';
+  document.getElementById('reel-schedule-time').value = '';
+}
+
+function clearReelForm() {
+  selectedFile = null;
+  document.getElementById('reel-form-wrap').style.display = 'none';
+  document.getElementById('drive-search').value = '';
+  document.getElementById('drive-results').innerHTML = '';
+}
+
+function scheduleReel() {
+  if (!selectedFile) return;
+  var caption = document.getElementById('reel-caption').value.trim();
+  var hashtags = document.getElementById('reel-hashtags').value.trim();
+  var t = document.getElementById('reel-schedule-time').value;
+  if (!caption) { showToast('Please add a caption.'); return; }
+  if (!t) { showToast('Please pick a schedule time.'); return; }
+  var label = new Date(t).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  var pid = pg().id;
+  var fullCaption = hashtags ? caption + '\n\n' + hashtags : caption;
+  var d = pgDesc();
+  var fullText = d ? fullCaption + '\n\n' + d : fullCaption;
+  var nr = {
+    id: 'r' + Date.now(),
+    fileId: selectedFile.id,
+    fileName: selectedFile.name,
+    text: fullText,
+    time: label,
+    status: 'scheduled',
+    likes: 0,
+    reach: 0,
+    type: 'reel'
+  };
+  state.reels[pid].push(nr);
+  state.posts[pid].unshift({
+    id: nr.id, fileId: nr.fileId, fileName: nr.fileName,
+    text: nr.text, time: nr.time, status: nr.status,
+    likes: nr.likes, reach: nr.reach, type: nr.type
+  });
+  sampleComments[nr.id] = [];
+  renderPosts();
+  renderReels();
+  clearReelForm();
+  showToast('Reel scheduled for ' + label + '!');
+}
+
+function renderReels() {
+  var list = document.getElementById('reels-list');
+  var reels = pgReels();
+  if (!reels.length) { list.innerHTML = '<div class="empty-state">No reels scheduled yet. Search Drive to pick one.</div>'; return; }
+  var html = '';
+  var i;
+  for (i = 0; i < reels.length; i++) {
+    var r = reels[i];
+    var statusCls = r.status === 'published' ? 'badge-pub' : 'badge-sched';
+    var statusTxt = r.status === 'published' ? 'Published' : 'Scheduled';
+    var preview = r.text.length > 130 ? r.text.slice(0, 130) + '...' : r.text;
+    html += '<div class="post-card">'
+      + '<div class="post-header">'
+      + '<span class="post-meta">' + esc(r.time) + '</span>'
+      + '<div class="badges"><span class="badge badge-reel">Reel</span><span class="badge ' + statusCls + '">' + statusTxt + '</span></div>'
+      + '</div>'
+      + '<div style="font-size:11px;color:#aaa;margin-bottom:6px">File: ' + esc(r.fileName) + '</div>'
+      + '<div class="post-text">' + esc(preview) + '</div>'
+      + '<div class="post-actions"><button class="action-btn" style="color:#e53e3e" onclick="deleteReel(\'' + r.id + '\')">Delete</button></div>'
+      + '</div>';
+  }
+  list.innerHTML = html;
+}
+
+function deleteReel(rid) {
+  var pid = pg().id;
+  var i;
+  var outR = [];
+  for (i = 0; i < state.reels[pid].length; i++) {
+    if (state.reels[pid][i].id !== rid) outR.push(state.reels[pid][i]);
+  }
+  state.reels[pid] = outR;
+  var outP = [];
+  for (i = 0; i < state.posts[pid].length; i++) {
+    if (state.posts[pid][i].id !== rid) outP.push(state.posts[pid][i]);
+  }
+  state.posts[pid] = outP;
+  renderReels();
+  renderPosts();
+  showToast('Reel removed.');
+}
+
+function renderAnalytics() {
+  var page = pg();
+  var posts = pgPosts();
+  var published = [];
+  var i;
+  for (i = 0; i < posts.length; i++) {
+    if (posts[i].status === 'published') published.push(posts[i]);
+  }
+  var totalReach = 0, totalLikes = 0, totalComments = 0;
+  for (i = 0; i < published.length; i++) {
+    totalReach += published[i].reach;
+    totalLikes += published[i].likes;
+    totalComments += (sampleComments[published[i].id] || []).length;
+  }
+  var reelsCount = pgReels().length;
+  document.getElementById('analytics-grid').innerHTML =
+    metric('Followers', page.followers.toLocaleString(), '+2.4% this week', 'up') +
+    metric('Total reach', totalReach.toLocaleString(), '+8.1%', 'up') +
+    metric('Total likes', totalLikes.toLocaleString(), '+5.3%', 'up') +
+    metric('Comments', String(totalComments), '-1.2%', 'down') +
+    metric('Reels queued', String(reelsCount), 'Active', 'up');
+
+  published.sort(function(a, b) { return b.reach - a.reach; });
+  var html = '';
+  for (i = 0; i < published.length; i++) {
+    var p = published[i];
+    var preview = p.text.length > 110 ? p.text.slice(0, 110) + '...' : p.text;
+    html += '<div class="post-card">'
+      + '<div class="post-text" style="margin-bottom:8px">' + esc(preview) + '</div>'
+      + '<div class="post-stats">'
+      + '<span>Reach: ' + p.reach.toLocaleString() + '</span>'
+      + '<span>Likes: ' + p.likes + '</span>'
+      + '<span>Comments: ' + (sampleComments[p.id] || []).length + '</span>'
+      + '</div></div>';
+  }
+  document.getElementById('analytics-posts').innerHTML = html || '<div class="empty-state">No published posts yet.</div>';
+}
+
+function metric(label, value, change, dir) {
+  return '<div class="metric-card">'
+    + '<div class="metric-label">' + label + '</div>'
+    + '<div class="metric-value">' + value + '</div>'
+    + '<div class="metric-change ' + dir + '">' + change + '</div>'
+    + '</div>';
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2800);
+}
 </script>
 </body>
 </html>
