@@ -544,18 +544,26 @@ function deletePost(pid) {
 
 /* ---- GOOGLE DRIVE ---- */
 function connectDrive() {
+  if (typeof google === 'undefined' || !google.accounts) {
+    showToast('Google script not loaded yet. Please wait a moment and try again.');
+    return;
+  }
   var tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: GOOGLE_CLIENT_ID,
     scope: GOOGLE_SCOPE,
+    ux_mode: 'popup',
     callback: function(resp) {
-      if (resp.error) { showToast('Google sign in failed.'); return; }
+      if (resp.error) {
+        showToast('Google sign in failed: ' + (resp.error_description || resp.error));
+        return;
+      }
       state.driveAccessToken = resp.access_token;
       document.getElementById('drive-connect-section').style.display = 'none';
       document.getElementById('drive-connected-section').style.display = 'block';
       loadReelsFolder();
     }
   });
-  tokenClient.requestAccessToken();
+  tokenClient.requestAccessToken({ prompt: 'consent' });
 }
 
 function disconnectDrive() {
