@@ -236,20 +236,41 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
         <div id="reel-form-wrap" style="display:none">
           <div class="reel-form">
             <div class="reel-form-title">
-              <span>Schedule: <span id="selected-reel-name" style="color:#888;font-weight:400;font-size:12px"></span></span>
+              <span>Reel: <span id="selected-reel-name" style="color:#888;font-weight:400;font-size:12px"></span></span>
               <button class="btn-outline" style="font-size:11px;padding:4px 9px" onclick="clearReelForm()">Clear</button>
             </div>
             <div id="already-posted-warn" class="warn-box">This reel has already been posted. Blocked to prevent duplicates.</div>
             <div class="field-label" style="margin-bottom:6px">Caption</div>
             <textarea id="reel-caption" placeholder="Write a caption for this reel..."></textarea>
-            <div style="font-size:11px;color:#aaa;margin-bottom:10px">Your global description and hashtags will be appended automatically from Settings.</div>
-            <div class="reel-form-footer">
+            <div style="font-size:11px;color:#aaa;margin-bottom:12px">Your global description and hashtags will be appended automatically from Settings.</div>
+
+            <div style="background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;padding:13px;margin-bottom:12px">
+              <div style="font-size:12px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em">Publish options</div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                <input type="radio" name="reel-mode" id="reel-mode-now" value="now" checked onchange="toggleReelMode()" />
+                <label for="reel-mode-now" style="font-size:13px;font-weight:600;color:#1a1a2e;cursor:pointer">Upload &amp; publish now</label>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <input type="radio" name="reel-mode" id="reel-mode-later" value="later" onchange="toggleReelMode()" />
+                <label for="reel-mode-later" style="font-size:13px;font-weight:600;color:#1a1a2e;cursor:pointer">Schedule for later</label>
+              </div>
+            </div>
+
+            <div id="reel-schedule-wrap" style="display:none;margin-bottom:12px">
               <div style="display:flex;align-items:center;gap:9px">
                 <span style="font-size:13px;font-weight:600;color:#444">Schedule time:</span>
-                <input type="datetime-local" id="reel-schedule-time" style="padding:7px 10px;font-size:13px;border:1.5px solid #c7d7f9;border-radius:8px;background:#fff;color:#1a1a2e;font-family:'DM Sans',sans-serif" />
+                <input type="datetime-local" id="reel-schedule-time" style="flex:1;padding:7px 10px;font-size:13px;border:1.5px solid #c7d7f9;border-radius:8px;background:#fff;color:#1a1a2e;font-family:'DM Sans',sans-serif" />
               </div>
-              <button class="btn-primary" id="reel-submit-btn" onclick="scheduleReel()">Schedule reel</button>
             </div>
+
+            <div id="reel-progress-wrap" style="display:none;margin-bottom:12px">
+              <div style="font-size:12px;font-weight:600;color:#1877F2;margin-bottom:6px" id="reel-progress-label">Preparing upload...</div>
+              <div style="background:#e5e7eb;border-radius:20px;height:8px;overflow:hidden">
+                <div id="reel-progress-bar" style="background:#1877F2;height:8px;width:0%;border-radius:20px;transition:width .3s"></div>
+              </div>
+            </div>
+
+            <button class="btn-primary" id="reel-submit-btn" onclick="handleReelSubmit()" style="width:100%;padding:11px">Upload &amp; Publish Reel</button>
           </div>
         </div>
 
@@ -714,26 +735,191 @@ function clearReelForm() {
   document.getElementById('drive-results').innerHTML = '';
 }
 
-function scheduleReel() {
+function toggleReelMode() {
+  var mode = document.querySelector('input[name="reel-mode"]:checked').value;
+  document.getElementById('reel-schedule-wrap').style.display = mode === 'later' ? 'block' : 'none';
+  document.getElementById('reel-submit-btn').textContent = mode === 'later' ? 'Schedule Reel' : 'Upload & Publish Reel';
+}
+
+function handleReelSubmit() {
+  var mode = document.querySelector('input[name="reel-mode"]:checked').value;
+  if (mode === 'later') {
+    scheduleReelLater();
+  } else {
+    uploadAndPublishReel();
+  }
+}
+
+function scheduleReelLater() {
   if (!selectedFile) return;
   var caption = document.getElementById('reel-caption').value.trim();
   var t = document.getElementById('reel-schedule-time').value;
   if (!caption) { showToast('Please add a caption.'); return; }
   if (!t) { showToast('Please pick a schedule time.'); return; }
-  var label = fmtDate(new Date(t));
+  var schedDate = new Date(t);
+  if (schedDate <= new Date()) { showToast('Please pick a future date and time.'); return; }
+  var label = fmtDate(schedDate);
   var pid = pg().id;
   var fullText = buildPostText(caption);
-  var nr = { id: 'reel_' + Date.now(), fileId: selectedFile.id, fileName: selectedFile.name, text: fullText, time: label, status: 'scheduled', likes: 0, reach: 0, type: 'reel' };
+  var nr = {
+    id: 'reel_' + Date.now(),
+    fileId: selectedFile.id,
+    fileName: selectedFile.name,
+    text: fullText,
+    time: label,
+    scheduleTs: schedDate.getTime(),
+    status: 'scheduled',
+    likes: 0, reach: 0, type: 'reel',
+    pendingUpload: true
+  };
   state.reels[pid].push(nr);
-  state.posts[pid].unshift({ id: nr.id, fileId: nr.fileId, fileName: nr.fileName, text: nr.text, time: nr.time, status: nr.status, likes: 0, reach: 0, type: 'reel' });
+  state.posts[pid].unshift({ id: nr.id, fileId: nr.fileId, fileName: nr.fileName, text: nr.text, time: nr.time, scheduleTs: nr.scheduleTs, status: nr.status, likes: 0, reach: 0, type: 'reel', pendingUpload: true });
   state.postedIds[selectedFile.id] = true;
   postComments[nr.id] = [];
   renderPosts();
   renderReels();
   savePersistentData();
   clearReelForm();
-  showToast('Reel scheduled for ' + label + '!');
+  showToast('Reel scheduled for ' + label + ' — will auto-upload at that time!');
 }
+
+function uploadAndPublishReel() {
+  if (!selectedFile) return;
+  var caption = document.getElementById('reel-caption').value.trim();
+  if (!caption) { showToast('Please add a caption.'); return; }
+  var fullText = buildPostText(caption);
+  var pid = pg().id;
+  var pageToken = pg().access_token;
+
+  setReelProgress(true, 'Downloading video from Google Drive...', 5);
+  document.getElementById('reel-submit-btn').disabled = true;
+
+  // Step 1: Download video from Google Drive
+  fetch('https://www.googleapis.com/drive/v3/files/' + selectedFile.id + '?alt=media', {
+    headers: { 'Authorization': 'Bearer ' + state.driveToken }
+  })
+  .then(function(r) {
+    if (!r.ok) throw new Error('Failed to download from Drive');
+    return r.blob();
+  })
+  .then(function(blob) {
+    setReelProgress(true, 'Initializing Facebook upload...', 20);
+    var fileSize = blob.size;
+    var mimeType = blob.type || 'video/mp4';
+
+    // Step 2: Initialize upload session with Facebook
+    return fetch('https://graph.facebook.com/v19.0/' + pid + '/video_reels', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        upload_phase: 'start',
+        access_token: pageToken
+      })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(initData) {
+      if (initData.error) throw new Error(initData.error.message);
+      var videoId = initData.video_id;
+      var uploadUrl = initData.upload_url || ('https://rupload.facebook.com/video-upload/v19.0/' + videoId);
+      setReelProgress(true, 'Uploading video to Facebook...', 40);
+
+      // Step 3: Upload the video bytes
+      return fetch(uploadUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': 'OAuth ' + pageToken,
+          'offset': '0',
+          'file_size': String(fileSize),
+          'Content-Type': mimeType
+        },
+        body: blob
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(uploadData) {
+        if (uploadData.error) throw new Error(uploadData.error.message);
+        setReelProgress(true, 'Publishing reel...', 80);
+
+        // Step 4: Finish and publish
+        return fetch('https://graph.facebook.com/v19.0/' + pid + '/video_reels', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            upload_phase: 'finish',
+            video_id: videoId,
+            video_state: 'PUBLISHED',
+            description: fullText,
+            access_token: pageToken
+          })
+        });
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(publishData) {
+        if (publishData.error) throw new Error(publishData.error.message);
+        setReelProgress(true, 'Reel published successfully!', 100);
+        var nr = {
+          id: videoId || ('reel_' + Date.now()),
+          fileId: selectedFile.id,
+          fileName: selectedFile.name,
+          text: fullText,
+          time: nowLabel(),
+          status: 'published',
+          likes: 0, reach: 0, type: 'reel'
+        };
+        state.reels[pid].push(nr);
+        state.posts[pid].unshift({ id: nr.id, fileId: nr.fileId, fileName: nr.fileName, text: nr.text, time: nr.time, status: nr.status, likes: 0, reach: 0, type: 'reel' });
+        state.postedIds[selectedFile.id] = true;
+        postComments[nr.id] = [];
+        savePersistentData();
+        setTimeout(function() {
+          setReelProgress(false, '', 0);
+          document.getElementById('reel-submit-btn').disabled = false;
+          renderPosts();
+          renderReels();
+          clearReelForm();
+          showToast('Reel published to Facebook!');
+        }, 1500);
+      });
+    });
+  })
+  .catch(function(err) {
+    setReelProgress(false, '', 0);
+    document.getElementById('reel-submit-btn').disabled = false;
+    var msg = err.message || 'Upload failed';
+    if (msg.indexOf('permissions') !== -1 || msg.indexOf('OAuthException') !== -1) {
+      showToast('Permission error — your token may need video_manage permission');
+    } else {
+      showToast('Upload failed: ' + msg.slice(0, 60));
+    }
+  });
+}
+
+function setReelProgress(show, label, pct) {
+  var wrap = document.getElementById('reel-progress-wrap');
+  var lbl = document.getElementById('reel-progress-label');
+  var bar = document.getElementById('reel-progress-bar');
+  wrap.style.display = show ? 'block' : 'none';
+  if (lbl) lbl.textContent = label;
+  if (bar) bar.style.width = pct + '%';
+}
+
+function checkScheduledReels() {
+  var pid = pg() ? pg().id : null;
+  if (!pid) return;
+  var reels = state.reels[pid] || [];
+  var now = Date.now();
+  for (var i = 0; i < reels.length; i++) {
+    var r = reels[i];
+    if (r.status === 'scheduled' && r.pendingUpload && r.scheduleTs && r.scheduleTs <= now) {
+      r.pendingUpload = false;
+      showToast('Time to publish reel: ' + r.fileName + ' — uploading now...');
+      selectedFile = { id: r.fileId, name: r.fileName };
+      document.getElementById('reel-caption').value = r.text;
+      uploadAndPublishReel();
+    }
+  }
+}
+
+setInterval(checkScheduledReels, 60000);
 
 function renderReels() {
   var list = document.getElementById('reels-list');
