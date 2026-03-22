@@ -240,9 +240,9 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
               <button class="btn-outline" style="font-size:11px;padding:4px 9px" onclick="clearReelForm()">Clear</button>
             </div>
             <div id="already-posted-warn" class="warn-box">This reel has already been posted. Blocked to prevent duplicates.</div>
-            <div class="field-label" style="margin-bottom:6px">Caption</div>
-            <textarea id="reel-caption" placeholder="Write a caption for this reel..."></textarea>
-            <div style="font-size:11px;color:#aaa;margin-bottom:12px">Your global description and hashtags will be appended automatically from Settings.</div>
+            <div class="field-label" style="margin-bottom:6px">Post text (caption)</div>
+            <textarea id="reel-caption" placeholder="Write the main text for this reel post..."></textarea>
+            <div style="background:#f0f6ff;border:1px solid #c7d7f9;border-radius:8px;padding:9px 12px;margin-bottom:12px;font-size:12px;color:#444;line-height:1.5" id="reel-append-preview"><strong style="color:#1877F2">Auto-appended below:</strong> <span id="reel-append-text">Go to Settings to set your description and hashtags.</span></div>
 
             <div style="background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;padding:13px;margin-bottom:12px">
               <div style="font-size:12px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em">Publish options</div>
@@ -726,6 +726,16 @@ function driveClick(fid, posted) {
   document.getElementById('reel-form-wrap').style.display = 'block';
   document.getElementById('reel-caption').value = '';
   document.getElementById('reel-schedule-time').value = '';
+  updateReelAppendPreview();
+}
+
+function updateReelAppendPreview() {
+  var el = document.getElementById('reel-append-text');
+  if (!el) return;
+  var parts = [];
+  if (state.globalHashtags) parts.push(state.globalHashtags);
+  if (state.globalDesc) parts.push(state.globalDesc);
+  el.textContent = parts.length ? parts.join(' | ') : 'Go to Settings to set your description and hashtags.';
 }
 
 function clearReelForm() {
@@ -766,6 +776,7 @@ function scheduleReelLater() {
     fileId: selectedFile.id,
     fileName: selectedFile.name,
     text: fullText,
+    originalCaption: caption,
     time: label,
     scheduleTs: schedDate.getTime(),
     status: 'scheduled',
@@ -773,7 +784,7 @@ function scheduleReelLater() {
     pendingUpload: true
   };
   state.reels[pid].push(nr);
-  state.posts[pid].unshift({ id: nr.id, fileId: nr.fileId, fileName: nr.fileName, text: nr.text, time: nr.time, scheduleTs: nr.scheduleTs, status: nr.status, likes: 0, reach: 0, type: 'reel', pendingUpload: true });
+  state.posts[pid].unshift({ id: nr.id, fileId: nr.fileId, fileName: nr.fileName, text: nr.text, originalCaption: nr.originalCaption, time: nr.time, scheduleTs: nr.scheduleTs, status: nr.status, likes: 0, reach: 0, type: 'reel', pendingUpload: true });
   state.postedIds[selectedFile.id] = true;
   postComments[nr.id] = [];
   renderPosts();
@@ -913,7 +924,8 @@ function checkScheduledReels() {
       r.pendingUpload = false;
       showToast('Time to publish reel: ' + r.fileName + ' — uploading now...');
       selectedFile = { id: r.fileId, name: r.fileName };
-      document.getElementById('reel-caption').value = r.text;
+      // Use only the original caption (without appended desc/tags) to avoid double-append
+      document.getElementById('reel-caption').value = r.originalCaption || r.text;
       uploadAndPublishReel();
     }
   }
