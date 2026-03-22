@@ -20,7 +20,6 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 .setup-card input:focus { outline: none; border-color: #1877F2; }
 .connect-btn { width: 100%; padding: 12px; background: #1877F2; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
 .connect-btn:hover { background: #1664d8; }
-.help-link { font-size: 12px; color: #1877F2; text-align: center; margin-top: 1rem; display: block; text-decoration: none; }
 .err { font-size: 12px; color: #e53e3e; margin-top: -0.75rem; margin-bottom: .85rem; display: none; }
 
 #main-app { display: none; min-height: 100vh; flex-direction: column; }
@@ -48,7 +47,6 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 
 .compose-textarea { width: 100%; min-height: 100px; padding: 10px 13px; font-size: 14px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: #fafafa; color: #1a1a2e; resize: vertical; font-family: 'DM Sans', sans-serif; line-height: 1.6; }
 .compose-textarea:focus { outline: none; border-color: #1877F2; background: #fff; }
-
 .scheduler-box { background: #f0f6ff; border: 2px solid #c7d7f9; border-radius: 12px; padding: 15px 17px; margin-top: 14px; }
 .scheduler-title { font-size: 12px; font-weight: 700; color: #1877F2; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 13px; }
 .scheduler-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -88,6 +86,15 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 .reply-row input:focus { outline: none; border-color: #1877F2; }
 .reply-send { padding: 7px 13px; background: #1877F2; color: white; border: none; border-radius: 8px; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; }
 
+/* Drive / Reels */
+.drive-connect-box { background: #f0f6ff; border: 2px dashed #c7d7f9; border-radius: 12px; padding: 2rem; text-align: center; margin-bottom: 14px; }
+.drive-connect-box h3 { font-size: 15px; font-weight: 600; color: #1a1a2e; margin-bottom: 6px; }
+.drive-connect-box p { font-size: 13px; color: #666; margin-bottom: 16px; line-height: 1.5; }
+.drive-connect-btn { padding: 10px 20px; background: #fff; border: 1.5px solid #4285f4; border-radius: 8px; color: #4285f4; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; display: inline-flex; align-items: center; gap: 8px; }
+.drive-connect-btn:hover { background: #f0f6ff; }
+.drive-connected-bar { background: #d4edda; border: 1px solid #a8d5b5; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+.drive-connected-bar span { font-size: 13px; color: #1a6630; font-weight: 500; }
+
 .drive-search-row { display: flex; gap: 9px; margin-bottom: 11px; }
 .drive-search-row input { flex: 1; padding: 9px 13px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: #fafafa; color: #1a1a2e; font-family: 'DM Sans', sans-serif; }
 .drive-search-row input:focus { outline: none; border-color: #1877F2; background: #fff; }
@@ -95,11 +102,11 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 .drive-file:hover { background: #f0f5ff; border-color: #c7d7f9; }
 .drive-file.posted { opacity: .5; cursor: default; background: #fafafa; }
 .drive-file-left { display: flex; align-items: center; gap: 10px; }
-.drive-icon { width: 30px; height: 30px; border-radius: 8px; background: #e8f0fe; display: flex; align-items: center; justify-content: center; }
+.drive-icon { width: 30px; height: 30px; border-radius: 8px; background: #e8f0fe; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .drive-name { font-size: 13px; color: #1a1a2e; font-weight: 500; }
 .drive-size { font-size: 11px; color: #aaa; margin-top: 1px; }
-.posted-badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: #d4edda; color: #1a6630; font-weight: 600; }
-.select-badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: #d0e8ff; color: #0050a0; font-weight: 600; }
+.posted-badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: #d4edda; color: #1a6630; font-weight: 600; white-space: nowrap; }
+.select-badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: #d0e8ff; color: #0050a0; font-weight: 600; white-space: nowrap; }
 
 .reel-form { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 14px; }
 .reel-form-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 11px; display: flex; align-items: center; justify-content: space-between; }
@@ -126,6 +133,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 .metric-change { font-size: 11px; margin-top: 3px; }
 .up { color: #1a6630; }
 .down { color: #c53030; }
+.loading-files { text-align: center; padding: 1.5rem; color: #888; font-size: 13px; }
 
 #toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(60px); background: #1a1a2e; border-radius: 10px; padding: 10px 20px; font-size: 13px; color: #fff; opacity: 0; transition: all .3s; z-index: 200; white-space: nowrap; pointer-events: none; }
 #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -140,14 +148,11 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
       <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
     </div>
     <h2>Facebook Page Manager</h2>
-    <p>Connect your Facebook pages and Google Drive to manage posts, schedule reels, and keep everything organised.</p>
+    <p>Connect your Facebook page to manage posts, schedule reels from your Google Drive, and keep everything organised.</p>
     <div class="field-label">Facebook Page Access Token</div>
     <input type="password" id="fb-token" placeholder="EAAxxxxxxxxxxxxxxx..." />
     <div id="fb-err" class="err">Please enter your Facebook access token</div>
-    <div class="field-label">Google Drive API Key (for Reels)</div>
-    <input type="password" id="drive-token" placeholder="AIzaSy..." />
     <button class="connect-btn" onclick="connectApp()">Connect</button>
-    <a class="help-link" href="https://developers.facebook.com" target="_blank">How do I get these credentials?</a>
   </div>
 </div>
 
@@ -172,10 +177,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
     <div id="tab-posts">
       <div class="desc-card">
         <div class="desc-card-header">
-          <div class="desc-card-label">
-            Page Description
-            <span class="desc-pill">per page</span>
-          </div>
+          <div class="desc-card-label">Page Description <span class="desc-pill">per page</span></div>
           <button class="desc-edit-btn" onclick="openDescModal()">Edit Description</button>
         </div>
         <div id="desc-content" style="font-size:13px;color:#444;line-height:1.55;display:none"></div>
@@ -208,39 +210,59 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
     </div>
 
     <div id="tab-reels" style="display:none">
-      <div class="card">
-        <div class="card-title">Search reels in Google Drive</div>
-        <div class="drive-search-row">
-          <input type="text" id="drive-search" placeholder="Type filename to search..." oninput="searchDrive()" />
+
+      <div id="drive-connect-section">
+        <div class="drive-connect-box">
+          <h3>Connect Google Drive</h3>
+          <p>Sign in with Google to access your <strong>"reels"</strong> folder and pick videos to schedule.</p>
+          <button class="drive-connect-btn" onclick="connectDrive()">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M4 2l8 14H4zm8 14l8-14H12zm0 0l4 6H8z" fill="#4285f4"/></svg>
+            Sign in with Google
+          </button>
         </div>
-        <div id="drive-results"></div>
-        <div id="drive-empty" class="empty-state" style="display:none">No files found. Try a different name.</div>
       </div>
 
-      <div id="reel-form-wrap" style="display:none">
-        <div class="reel-form">
-          <div class="reel-form-title">
-            <span>Schedule reel: <span id="selected-reel-name" style="color:#888;font-weight:400;font-size:12px"></span></span>
-            <button class="btn-outline" style="font-size:11px;padding:4px 9px" onclick="clearReelForm()">Clear</button>
+      <div id="drive-connected-section" style="display:none">
+        <div class="drive-connected-bar">
+          <span>Google Drive connected — showing your "reels" folder</span>
+          <button class="btn-outline" style="font-size:11px;padding:4px 10px" onclick="disconnectDrive()">Disconnect</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Search reels</div>
+          <div class="drive-search-row">
+            <input type="text" id="drive-search" placeholder="Type filename to search..." oninput="searchDrive()" />
           </div>
-          <div id="already-posted-warn" class="warn-box">This reel has already been posted. Scheduling is blocked to prevent duplicates.</div>
-          <div class="field-label" style="margin-bottom:6px">Caption</div>
-          <textarea id="reel-caption" placeholder="Write a caption for this reel..."></textarea>
-          <div class="field-label" style="margin-bottom:6px">Hashtags</div>
-          <input type="text" id="reel-hashtags" placeholder="#travel #lifestyle #explore" />
-          <div style="font-size:11px;color:#aaa;margin-bottom:2px">Separate with spaces. Appended below caption automatically.</div>
-          <div class="reel-form-footer">
-            <div style="display:flex;align-items:center;gap:9px">
-              <span style="font-size:13px;font-weight:600;color:#444">Schedule time:</span>
-              <input type="datetime-local" id="reel-schedule-time" style="padding:7px 10px;font-size:13px;border:1.5px solid #c7d7f9;border-radius:8px;background:#fff;color:#1a1a2e;font-family:'DM Sans',sans-serif" />
+          <div id="drive-results"></div>
+          <div id="drive-loading" class="loading-files" style="display:none">Loading files from Drive...</div>
+          <div id="drive-empty" class="empty-state" style="display:none">No files found. Try a different name.</div>
+        </div>
+
+        <div id="reel-form-wrap" style="display:none">
+          <div class="reel-form">
+            <div class="reel-form-title">
+              <span>Schedule reel: <span id="selected-reel-name" style="color:#888;font-weight:400;font-size:12px"></span></span>
+              <button class="btn-outline" style="font-size:11px;padding:4px 9px" onclick="clearReelForm()">Clear</button>
             </div>
-            <button class="btn-primary" id="reel-submit-btn" onclick="scheduleReel()">Schedule reel</button>
+            <div id="already-posted-warn" class="warn-box">This reel has already been posted. Scheduling is blocked to prevent duplicates.</div>
+            <div class="field-label" style="margin-bottom:6px">Caption</div>
+            <textarea id="reel-caption" placeholder="Write a caption for this reel..."></textarea>
+            <div class="field-label" style="margin-bottom:6px">Hashtags</div>
+            <input type="text" id="reel-hashtags" placeholder="#travel #lifestyle #explore" />
+            <div style="font-size:11px;color:#aaa;margin-bottom:2px">Separate with spaces. Appended below caption automatically.</div>
+            <div class="reel-form-footer">
+              <div style="display:flex;align-items:center;gap:9px">
+                <span style="font-size:13px;font-weight:600;color:#444">Schedule time:</span>
+                <input type="datetime-local" id="reel-schedule-time" style="padding:7px 10px;font-size:13px;border:1.5px solid #c7d7f9;border-radius:8px;background:#fff;color:#1a1a2e;font-family:'DM Sans',sans-serif" />
+              </div>
+              <button class="btn-primary" id="reel-submit-btn" onclick="scheduleReel()">Schedule reel</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="section-label">Scheduled reels</div>
-      <div id="reels-list"></div>
+        <div class="section-label">Scheduled reels</div>
+        <div id="reels-list"></div>
+      </div>
     </div>
 
     <div id="tab-analytics" style="display:none">
@@ -268,84 +290,83 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 <div id="toast"></div>
 
 <script>
+var GOOGLE_CLIENT_ID = '647916987588-32q7rq22dgqqjv7edaq6jktkjc3k3v4l.apps.googleusercontent.com';
+var GOOGLE_SCOPE = 'https://www.googleapis.com/auth/drive.readonly';
+var REELS_FOLDER_NAME = 'reels';
+
 var state = {
   token: '',
-  driveToken: '',
   pages: [],
   currentPageIndex: 0,
   posts: {},
   descriptions: {},
   reels: {},
-  driveFiles: []
+  driveAccessToken: null,
+  driveFiles: [],
+  postedFileIds: {}
 };
 
-var samplePages = [
-  { id: 'pg1', name: 'My Business Page', followers: 4820 },
-  { id: 'pg2', name: 'Coffee and Co.', followers: 12340 }
-];
-
-var sampleDriveFiles = [
-  { id: 'f1', name: 'summer_promo_reel.mp4', size: '48 MB', duration: '0:28' },
-  { id: 'f2', name: 'product_launch_v2.mp4', size: '62 MB', duration: '0:45' },
-  { id: 'f3', name: 'behind_the_scenes_june.mp4', size: '31 MB', duration: '0:20' },
-  { id: 'f4', name: 'customer_story_amira.mp4', size: '55 MB', duration: '0:38' },
-  { id: 'f5', name: 'weekly_tip_003.mp4', size: '22 MB', duration: '0:15' },
-  { id: 'f6', name: 'grand_opening_recap.mp4', size: '78 MB', duration: '1:02' }
-];
-
-var sampleComments = {
-  'p1': [
-    { id: 'c1', author: 'Sarah M.', initials: 'SM', text: 'This looks amazing!', time: '2h ago' },
-    { id: 'c2', author: 'James K.', initials: 'JK', text: 'Great content!', time: '1h ago' }
-  ],
-  'p2': [{ id: 'c3', author: 'Priya L.', initials: 'PL', text: 'Love this update!', time: '5h ago' }],
-  'p3': []
-};
+var comments = {};
 
 function makeSamplePosts() {
-  return [
-    { id: 'p1', text: 'Excited to announce our new summer menu. Come visit us this weekend!', time: 'Jun 12, 2:30 PM', status: 'published', likes: 248, reach: 3200, type: 'post' },
-    { id: 'p2', text: 'Thanks to everyone who joined our community event last Saturday.', time: 'Jun 8, 11:00 AM', status: 'published', likes: 192, reach: 2870, type: 'post' },
-    { id: 'p3', text: 'Big news coming soon, stay tuned!', time: 'Jun 20, 9:00 AM', status: 'scheduled', likes: 0, reach: 0, type: 'post' }
-  ];
+  return [];
 }
 
 function connectApp() {
   var t = document.getElementById('fb-token').value.trim();
   var errEl = document.getElementById('fb-err');
-  if (!t) {
-    errEl.style.display = 'block';
-    return;
-  }
+  if (!t) { errEl.style.display = 'block'; return; }
   errEl.style.display = 'none';
   state.token = t;
-  state.driveToken = document.getElementById('drive-token').value.trim();
-  state.pages = samplePages;
-  state.driveFiles = sampleDriveFiles;
-  var i;
-  for (i = 0; i < state.pages.length; i++) {
-    var pid = state.pages[i].id;
-    state.posts[pid] = makeSamplePosts();
-    state.descriptions[pid] = '';
-    state.reels[pid] = [];
-  }
-  document.getElementById('setup-screen').style.display = 'none';
-  document.getElementById('main-app').style.display = 'flex';
-  var sel = document.getElementById('page-select');
-  var opts = '';
-  for (i = 0; i < state.pages.length; i++) {
-    opts += '<option value="' + i + '">' + esc(state.pages[i].name) + '</option>';
-  }
-  sel.innerHTML = opts;
-  renderAll();
-  showToast('Connected. Showing demo data.');
+  loadFBPages();
+}
+
+function loadFBPages() {
+  fetch('https://graph.facebook.com/v19.0/me/accounts?access_token=' + state.token)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.error) {
+        document.getElementById('fb-err').textContent = data.error.message;
+        document.getElementById('fb-err').style.display = 'block';
+        return;
+      }
+      if (!data.data || !data.data.length) {
+        document.getElementById('fb-err').textContent = 'No pages found for this token.';
+        document.getElementById('fb-err').style.display = 'block';
+        return;
+      }
+      state.pages = data.data;
+      var i;
+      for (i = 0; i < state.pages.length; i++) {
+        var pid = state.pages[i].id;
+        state.posts[pid] = [];
+        state.descriptions[pid] = '';
+        state.reels[pid] = [];
+      }
+      document.getElementById('setup-screen').style.display = 'none';
+      document.getElementById('main-app').style.display = 'flex';
+      var sel = document.getElementById('page-select');
+      var opts = '';
+      for (i = 0; i < state.pages.length; i++) {
+        opts += '<option value="' + i + '">' + esc(state.pages[i].name) + '</option>';
+      }
+      sel.innerHTML = opts;
+      renderAll();
+      showToast('Connected to Facebook!');
+    })
+    .catch(function() {
+      document.getElementById('fb-err').textContent = 'Connection failed. Check your token.';
+      document.getElementById('fb-err').style.display = 'block';
+    });
 }
 
 function disconnect() {
+  state = { token: '', pages: [], currentPageIndex: 0, posts: {}, descriptions: {}, reels: {}, driveAccessToken: null, driveFiles: [], postedFileIds: {} };
+  comments = {};
   document.getElementById('setup-screen').style.display = 'flex';
   document.getElementById('main-app').style.display = 'none';
   document.getElementById('fb-token').value = '';
-  document.getElementById('drive-token').value = '';
+  document.getElementById('fb-err').style.display = 'none';
 }
 
 function switchPage() {
@@ -374,23 +395,14 @@ function renderAll() {
   renderDesc();
   renderPosts();
   renderReels();
-  document.getElementById('drive-results').innerHTML = '';
-  document.getElementById('drive-search').value = '';
-  document.getElementById('reel-form-wrap').style.display = 'none';
 }
 
 function renderDesc() {
   var d = pgDesc();
   var contentEl = document.getElementById('desc-content');
   var emptyEl = document.getElementById('desc-empty');
-  if (d) {
-    contentEl.textContent = d;
-    contentEl.style.display = 'block';
-    emptyEl.style.display = 'none';
-  } else {
-    contentEl.style.display = 'none';
-    emptyEl.style.display = 'block';
-  }
+  if (d) { contentEl.textContent = d; contentEl.style.display = 'block'; emptyEl.style.display = 'none'; }
+  else { contentEl.style.display = 'none'; emptyEl.style.display = 'block'; }
 }
 
 function openDescModal() {
@@ -398,26 +410,15 @@ function openDescModal() {
   updateDescChar();
   document.getElementById('desc-modal').style.display = 'flex';
 }
-
-function closeDescModal() {
-  document.getElementById('desc-modal').style.display = 'none';
-}
-
-function updateDescChar() {
-  var len = document.getElementById('desc-textarea').value.length;
-  document.getElementById('desc-char').textContent = len + ' characters';
-}
-
+function closeDescModal() { document.getElementById('desc-modal').style.display = 'none'; }
+function updateDescChar() { document.getElementById('desc-char').textContent = document.getElementById('desc-textarea').value.length + ' characters'; }
 function saveDescription() {
   state.descriptions[pg().id] = document.getElementById('desc-textarea').value.trim();
-  closeDescModal();
-  renderDesc();
-  showToast('Description saved!');
+  closeDescModal(); renderDesc(); showToast('Description saved!');
 }
 
 function updateCharCount() {
-  var len = document.getElementById('post-text').value.length;
-  document.getElementById('char-count').textContent = len + ' / 63,206';
+  document.getElementById('char-count').textContent = document.getElementById('post-text').value.length + ' / 63,206';
 }
 
 function withDesc(text) {
@@ -428,23 +429,26 @@ function withDesc(text) {
 function publishPost() {
   var text = document.getElementById('post-text').value.trim();
   if (!text) { showToast('Please write something first.'); return; }
-  var pid = pg().id;
-  var np = {
-    id: 'p' + Date.now(),
-    text: withDesc(text),
-    time: new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }),
-    status: 'published',
-    likes: 0,
-    reach: 0,
-    type: 'post'
-  };
-  state.posts[pid].unshift(np);
-  sampleComments[np.id] = [];
-  document.getElementById('post-text').value = '';
-  document.getElementById('schedule-time').value = '';
-  updateCharCount();
-  renderPosts();
-  showToast('Post published!');
+  var pageToken = pg().access_token;
+  var fullText = withDesc(text);
+  fetch('https://graph.facebook.com/v19.0/' + pg().id + '/feed', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: fullText, access_token: pageToken })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.error) { showToast('Error: ' + data.error.message); return; }
+    var np = { id: data.id, text: fullText, time: new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }), status: 'published', likes: 0, reach: 0, type: 'post' };
+    state.posts[pg().id].unshift(np);
+    comments[np.id] = [];
+    document.getElementById('post-text').value = '';
+    document.getElementById('schedule-time').value = '';
+    updateCharCount();
+    renderPosts();
+    showToast('Post published to Facebook!');
+  })
+  .catch(function() { showToast('Failed to publish. Check your token.'); });
 }
 
 function schedulePost() {
@@ -454,17 +458,9 @@ function schedulePost() {
   if (!t) { showToast('Please pick a schedule time.'); return; }
   var label = new Date(t).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
   var pid = pg().id;
-  var np = {
-    id: 'p' + Date.now(),
-    text: withDesc(text),
-    time: label,
-    status: 'scheduled',
-    likes: 0,
-    reach: 0,
-    type: 'post'
-  };
+  var np = { id: 'local_' + Date.now(), text: withDesc(text), time: label, status: 'scheduled', likes: 0, reach: 0, type: 'post' };
   state.posts[pid].unshift(np);
-  sampleComments[np.id] = [];
+  comments[np.id] = [];
   document.getElementById('post-text').value = '';
   document.getElementById('schedule-time').value = '';
   updateCharCount();
@@ -475,73 +471,50 @@ function schedulePost() {
 function renderPosts() {
   var list = document.getElementById('posts-list');
   var posts = pgPosts();
-  if (!posts.length) { list.innerHTML = '<div class="empty-state">No posts yet.</div>'; return; }
+  if (!posts.length) { list.innerHTML = '<div class="empty-state">No posts yet. Write your first post above!</div>'; return; }
   var html = '';
   var i;
   for (i = 0; i < posts.length; i++) {
     var p = posts[i];
-    var cs = sampleComments[p.id] || [];
+    var cs = comments[p.id] || [];
     var reelBadge = p.type === 'reel' ? '<span class="badge badge-reel">Reel</span>' : '';
     var statusCls = p.status === 'published' ? 'badge-pub' : 'badge-sched';
     var statusTxt = p.status === 'published' ? 'Published' : 'Scheduled';
-    var statsHtml;
-    if (p.status === 'published') {
-      statsHtml = '<div class="post-stats"><span>Likes: ' + p.likes + '</span><span>Comments: ' + cs.length + '</span><span>Reach: ' + p.reach.toLocaleString() + '</span></div>';
-    } else {
-      statsHtml = '<div class="post-stats"><span style="color:#93c5fd">Waiting to go live</span></div>';
-    }
-    var commentBtn = '';
-    if (p.status === 'published' && p.type !== 'reel') {
-      commentBtn = '<button class="action-btn" onclick="toggleComments(\'' + p.id + '\')">Comments (' + cs.length + ')</button>';
-    }
+    var statsHtml = p.status === 'published'
+      ? '<div class="post-stats"><span>Likes: ' + p.likes + '</span><span>Comments: ' + cs.length + '</span><span>Reach: ' + p.reach.toLocaleString() + '</span></div>'
+      : '<div class="post-stats"><span style="color:#93c5fd">Waiting to go live</span></div>';
+    var commentBtn = (p.status === 'published' && p.type !== 'reel')
+      ? '<button class="action-btn" onclick="toggleComments(\'' + p.id + '\')">Comments (' + cs.length + ')</button>' : '';
     html += '<div class="post-card">'
-      + '<div class="post-header">'
-      + '<span class="post-meta">' + esc(p.time) + (p.type === 'reel' ? ' - Reel' : '') + '</span>'
-      + '<div class="badges">' + reelBadge + '<span class="badge ' + statusCls + '">' + statusTxt + '</span></div>'
-      + '</div>'
-      + '<div class="post-text">' + esc(p.text) + '</div>'
-      + statsHtml
-      + '<div class="post-actions">'
-      + commentBtn
-      + '<button class="action-btn" style="color:#e53e3e" onclick="deletePost(\'' + p.id + '\')">Delete</button>'
-      + '</div>'
+      + '<div class="post-header"><span class="post-meta">' + esc(p.time) + (p.type === 'reel' ? ' - Reel' : '') + '</span>'
+      + '<div class="badges">' + reelBadge + '<span class="badge ' + statusCls + '">' + statusTxt + '</span></div></div>'
+      + '<div class="post-text">' + esc(p.text) + '</div>' + statsHtml
+      + '<div class="post-actions">' + commentBtn
+      + '<button class="action-btn" style="color:#e53e3e" onclick="deletePost(\'' + p.id + '\')">Delete</button></div>'
       + '<div class="comments-section" id="comments-' + p.id + '">'
       + '<div id="clist-' + p.id + '">' + renderClist(p.id) + '</div>'
-      + '<div class="reply-row">'
-      + '<input type="text" id="ri-' + p.id + '" placeholder="Reply as page..." />'
-      + '<button class="reply-send" onclick="sendReply(\'' + p.id + '\')">Reply</button>'
-      + '</div>'
-      + '</div>'
-      + '</div>';
+      + '<div class="reply-row"><input type="text" id="ri-' + p.id + '" placeholder="Reply as page..." />'
+      + '<button class="reply-send" onclick="sendReply(\'' + p.id + '\')">Reply</button></div></div></div>';
   }
   list.innerHTML = html;
-
   for (i = 0; i < posts.length; i++) {
     (function(pid) {
       var inp = document.getElementById('ri-' + pid);
-      if (inp) {
-        inp.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter') sendReply(pid);
-        });
-      }
+      if (inp) inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') sendReply(pid); });
     })(posts[i].id);
   }
 }
 
 function renderClist(pid) {
-  var cs = sampleComments[pid] || [];
+  var cs = comments[pid] || [];
   if (!cs.length) return '<div style="font-size:12px;color:#bbb;margin-bottom:8px">No comments yet.</div>';
   var html = '';
-  var i;
-  for (i = 0; i < cs.length; i++) {
+  for (var i = 0; i < cs.length; i++) {
     var c = cs[i];
-    html += '<div class="comment-item">'
-      + '<div class="c-avatar">' + esc(c.initials) + '</div>'
-      + '<div class="c-bubble">'
-      + '<div class="c-author">' + esc(c.author) + '</div>'
+    html += '<div class="comment-item"><div class="c-avatar">' + esc(c.initials) + '</div>'
+      + '<div class="c-bubble"><div class="c-author">' + esc(c.author) + '</div>'
       + '<div class="c-text">' + esc(c.text) + '</div>'
-      + '<div class="c-time">' + esc(c.time) + '</div>'
-      + '</div></div>';
+      + '<div class="c-time">' + esc(c.time) + '</div></div></div>';
   }
   return html;
 }
@@ -555,14 +528,8 @@ function sendReply(pid) {
   var inp = document.getElementById('ri-' + pid);
   var t = inp.value.trim();
   if (!t) return;
-  if (!sampleComments[pid]) sampleComments[pid] = [];
-  sampleComments[pid].push({
-    id: 'c' + Date.now(),
-    author: pg().name,
-    initials: pg().name.slice(0, 2).toUpperCase(),
-    text: t,
-    time: 'Just now'
-  });
+  if (!comments[pid]) comments[pid] = [];
+  comments[pid].push({ initials: pg().name.slice(0, 2).toUpperCase(), author: pg().name, text: t, time: 'Just now' });
   inp.value = '';
   document.getElementById('clist-' + pid).innerHTML = renderClist(pid);
   showToast('Reply posted!');
@@ -570,30 +537,74 @@ function sendReply(pid) {
 
 function deletePost(pid) {
   var pageid = pg().id;
-  var arr = state.posts[pageid];
   var out = [];
-  var i;
-  for (i = 0; i < arr.length; i++) {
-    if (arr[i].id !== pid) out.push(arr[i]);
+  for (var i = 0; i < state.posts[pageid].length; i++) {
+    if (state.posts[pageid][i].id !== pid) out.push(state.posts[pageid][i]);
   }
   state.posts[pageid] = out;
   renderPosts();
   showToast('Post deleted.');
 }
 
-var selectedFile = null;
-
-function postedIds() {
-  var ids = {};
-  var keys = Object.keys(state.reels);
-  var i, j;
-  for (i = 0; i < keys.length; i++) {
-    var arr = state.reels[keys[i]];
-    for (j = 0; j < arr.length; j++) {
-      if (arr[j].fileId) ids[arr[j].fileId] = true;
+/* ---- GOOGLE DRIVE ---- */
+function connectDrive() {
+  var tokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: GOOGLE_CLIENT_ID,
+    scope: GOOGLE_SCOPE,
+    callback: function(resp) {
+      if (resp.error) { showToast('Google sign in failed.'); return; }
+      state.driveAccessToken = resp.access_token;
+      document.getElementById('drive-connect-section').style.display = 'none';
+      document.getElementById('drive-connected-section').style.display = 'block';
+      loadReelsFolder();
     }
-  }
-  return ids;
+  });
+  tokenClient.requestAccessToken();
+}
+
+function disconnectDrive() {
+  state.driveAccessToken = null;
+  state.driveFiles = [];
+  document.getElementById('drive-connect-section').style.display = 'block';
+  document.getElementById('drive-connected-section').style.display = 'none';
+  document.getElementById('drive-results').innerHTML = '';
+  document.getElementById('drive-search').value = '';
+  document.getElementById('reel-form-wrap').style.display = 'none';
+}
+
+function loadReelsFolder() {
+  var loadingEl = document.getElementById('drive-loading');
+  var resultsEl = document.getElementById('drive-results');
+  loadingEl.style.display = 'block';
+  resultsEl.innerHTML = '';
+
+  fetch("https://www.googleapis.com/drive/v3/files?q=name%3D'" + REELS_FOLDER_NAME + "'+and+mimeType%3D'application%2Fvnd.google-apps.folder'&fields=files(id,name)", {
+    headers: { 'Authorization': 'Bearer ' + state.driveAccessToken }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (!data.files || !data.files.length) {
+      loadingEl.style.display = 'none';
+      document.getElementById('drive-empty').style.display = 'block';
+      document.getElementById('drive-empty').textContent = 'No folder named "reels" found in your Drive.';
+      return;
+    }
+    var folderId = data.files[0].id;
+    return fetch("https://www.googleapis.com/drive/v3/files?q='" + folderId + "'+in+parents+and+mimeType+contains+'video'&fields=files(id,name,size,mimeType)&orderBy=name", {
+      headers: { 'Authorization': 'Bearer ' + state.driveAccessToken }
+    });
+  })
+  .then(function(r) { if (r) return r.json(); })
+  .then(function(data) {
+    loadingEl.style.display = 'none';
+    if (!data || !data.files) return;
+    state.driveFiles = data.files;
+    showToast('Found ' + data.files.length + ' video(s) in your reels folder!');
+  })
+  .catch(function() {
+    loadingEl.style.display = 'none';
+    showToast('Failed to load Drive files.');
+  });
 }
 
 function searchDrive() {
@@ -601,7 +612,6 @@ function searchDrive() {
   var resEl = document.getElementById('drive-results');
   var emEl = document.getElementById('drive-empty');
   if (!q) { resEl.innerHTML = ''; emEl.style.display = 'none'; return; }
-  var posted = postedIds();
   var html = '';
   var found = 0;
   var i;
@@ -609,13 +619,12 @@ function searchDrive() {
     var f = state.driveFiles[i];
     if (f.name.toLowerCase().indexOf(q) === -1) continue;
     found++;
-    var isPosted = !!posted[f.id];
+    var isPosted = !!state.postedFileIds[f.id];
+    var sizeStr = f.size ? (Math.round(parseInt(f.size) / 1048576) + ' MB') : '';
     html += '<div class="drive-file' + (isPosted ? ' posted' : '') + '" onclick="driveClick(\'' + f.id + '\',' + isPosted + ')">'
       + '<div class="drive-file-left">'
-      + '<div class="drive-icon">'
-      + '<svg width="16" height="16" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 27h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>'
-      + '</div>'
-      + '<div><div class="drive-name">' + esc(f.name) + '</div><div class="drive-size">' + f.size + ' - ' + f.duration + '</div></div>'
+      + '<div class="drive-icon"><svg width="16" height="16" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 27h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg></div>'
+      + '<div><div class="drive-name">' + esc(f.name) + '</div><div class="drive-size">' + sizeStr + '</div></div>'
       + '</div>'
       + (isPosted ? '<span class="posted-badge">Already posted</span>' : '<span class="select-badge">Select</span>')
       + '</div>';
@@ -629,19 +638,19 @@ function driveClick(fileId, isPosted) {
   selectFile(fileId);
 }
 
+var selectedFile = null;
 function selectFile(fileId) {
   var f = null;
-  var i;
-  for (i = 0; i < state.driveFiles.length; i++) {
+  for (var i = 0; i < state.driveFiles.length; i++) {
     if (state.driveFiles[i].id === fileId) { f = state.driveFiles[i]; break; }
   }
   if (!f) return;
   selectedFile = f;
-  var alreadyPosted = !!postedIds()[fileId];
+  var isPosted = !!state.postedFileIds[fileId];
   document.getElementById('selected-reel-name').textContent = f.name;
-  document.getElementById('already-posted-warn').style.display = alreadyPosted ? 'block' : 'none';
-  document.getElementById('reel-submit-btn').disabled = alreadyPosted;
-  document.getElementById('reel-submit-btn').style.opacity = alreadyPosted ? '0.45' : '1';
+  document.getElementById('already-posted-warn').style.display = isPosted ? 'block' : 'none';
+  document.getElementById('reel-submit-btn').disabled = isPosted;
+  document.getElementById('reel-submit-btn').style.opacity = isPosted ? '0.45' : '1';
   document.getElementById('reel-form-wrap').style.display = 'block';
   document.getElementById('reel-caption').value = '';
   document.getElementById('reel-hashtags').value = '';
@@ -667,24 +676,11 @@ function scheduleReel() {
   var fullCaption = hashtags ? caption + '\n\n' + hashtags : caption;
   var d = pgDesc();
   var fullText = d ? fullCaption + '\n\n' + d : fullCaption;
-  var nr = {
-    id: 'r' + Date.now(),
-    fileId: selectedFile.id,
-    fileName: selectedFile.name,
-    text: fullText,
-    time: label,
-    status: 'scheduled',
-    likes: 0,
-    reach: 0,
-    type: 'reel'
-  };
+  var nr = { id: 'reel_' + Date.now(), fileId: selectedFile.id, fileName: selectedFile.name, text: fullText, time: label, status: 'scheduled', likes: 0, reach: 0, type: 'reel' };
   state.reels[pid].push(nr);
-  state.posts[pid].unshift({
-    id: nr.id, fileId: nr.fileId, fileName: nr.fileName,
-    text: nr.text, time: nr.time, status: nr.status,
-    likes: nr.likes, reach: nr.reach, type: nr.type
-  });
-  sampleComments[nr.id] = [];
+  state.posts[pid].unshift({ id: nr.id, fileId: nr.fileId, fileName: nr.fileName, text: nr.text, time: nr.time, status: nr.status, likes: nr.likes, reach: nr.reach, type: nr.type });
+  state.postedFileIds[selectedFile.id] = true;
+  comments[nr.id] = [];
   renderPosts();
   renderReels();
   clearReelForm();
@@ -694,23 +690,19 @@ function scheduleReel() {
 function renderReels() {
   var list = document.getElementById('reels-list');
   var reels = pgReels();
-  if (!reels.length) { list.innerHTML = '<div class="empty-state">No reels scheduled yet. Search Drive to pick one.</div>'; return; }
+  if (!reels.length) { list.innerHTML = '<div class="empty-state">No reels scheduled yet.</div>'; return; }
   var html = '';
-  var i;
-  for (i = 0; i < reels.length; i++) {
+  for (var i = 0; i < reels.length; i++) {
     var r = reels[i];
     var statusCls = r.status === 'published' ? 'badge-pub' : 'badge-sched';
     var statusTxt = r.status === 'published' ? 'Published' : 'Scheduled';
     var preview = r.text.length > 130 ? r.text.slice(0, 130) + '...' : r.text;
     html += '<div class="post-card">'
-      + '<div class="post-header">'
-      + '<span class="post-meta">' + esc(r.time) + '</span>'
-      + '<div class="badges"><span class="badge badge-reel">Reel</span><span class="badge ' + statusCls + '">' + statusTxt + '</span></div>'
-      + '</div>'
+      + '<div class="post-header"><span class="post-meta">' + esc(r.time) + '</span>'
+      + '<div class="badges"><span class="badge badge-reel">Reel</span><span class="badge ' + statusCls + '">' + statusTxt + '</span></div></div>'
       + '<div style="font-size:11px;color:#aaa;margin-bottom:6px">File: ' + esc(r.fileName) + '</div>'
       + '<div class="post-text">' + esc(preview) + '</div>'
-      + '<div class="post-actions"><button class="action-btn" style="color:#e53e3e" onclick="deleteReel(\'' + r.id + '\')">Delete</button></div>'
-      + '</div>';
+      + '<div class="post-actions"><button class="action-btn" style="color:#e53e3e" onclick="deleteReel(\'' + r.id + '\')">Delete</button></div></div>';
   }
   list.innerHTML = html;
 }
@@ -718,18 +710,19 @@ function renderReels() {
 function deleteReel(rid) {
   var pid = pg().id;
   var i;
-  var outR = [];
+  var outR = [], outP = [];
+  var fileId = null;
   for (i = 0; i < state.reels[pid].length; i++) {
-    if (state.reels[pid][i].id !== rid) outR.push(state.reels[pid][i]);
+    if (state.reels[pid][i].id === rid) fileId = state.reels[pid][i].fileId;
+    else outR.push(state.reels[pid][i]);
   }
-  state.reels[pid] = outR;
-  var outP = [];
   for (i = 0; i < state.posts[pid].length; i++) {
     if (state.posts[pid][i].id !== rid) outP.push(state.posts[pid][i]);
   }
+  state.reels[pid] = outR;
   state.posts[pid] = outP;
-  renderReels();
-  renderPosts();
+  if (fileId) delete state.postedFileIds[fileId];
+  renderReels(); renderPosts();
   showToast('Reel removed.');
 }
 
@@ -738,53 +731,35 @@ function renderAnalytics() {
   var posts = pgPosts();
   var published = [];
   var i;
-  for (i = 0; i < posts.length; i++) {
-    if (posts[i].status === 'published') published.push(posts[i]);
-  }
+  for (i = 0; i < posts.length; i++) { if (posts[i].status === 'published') published.push(posts[i]); }
   var totalReach = 0, totalLikes = 0, totalComments = 0;
   for (i = 0; i < published.length; i++) {
     totalReach += published[i].reach;
     totalLikes += published[i].likes;
-    totalComments += (sampleComments[published[i].id] || []).length;
+    totalComments += (comments[published[i].id] || []).length;
   }
-  var reelsCount = pgReels().length;
   document.getElementById('analytics-grid').innerHTML =
-    metric('Followers', page.followers.toLocaleString(), '+2.4% this week', 'up') +
-    metric('Total reach', totalReach.toLocaleString(), '+8.1%', 'up') +
-    metric('Total likes', totalLikes.toLocaleString(), '+5.3%', 'up') +
-    metric('Comments', String(totalComments), '-1.2%', 'down') +
-    metric('Reels queued', String(reelsCount), 'Active', 'up');
-
+    metric('Followers', '—', 'Live via API', 'up') +
+    metric('Posts', String(published.length), 'Published', 'up') +
+    metric('Reels queued', String(pgReels().length), 'Scheduled', 'up') +
+    metric('Total likes', String(totalLikes), 'All posts', 'up');
   published.sort(function(a, b) { return b.reach - a.reach; });
   var html = '';
   for (i = 0; i < published.length; i++) {
     var p = published[i];
     var preview = p.text.length > 110 ? p.text.slice(0, 110) + '...' : p.text;
-    html += '<div class="post-card">'
-      + '<div class="post-text" style="margin-bottom:8px">' + esc(preview) + '</div>'
-      + '<div class="post-stats">'
-      + '<span>Reach: ' + p.reach.toLocaleString() + '</span>'
-      + '<span>Likes: ' + p.likes + '</span>'
-      + '<span>Comments: ' + (sampleComments[p.id] || []).length + '</span>'
-      + '</div></div>';
+    html += '<div class="post-card"><div class="post-text" style="margin-bottom:8px">' + esc(preview) + '</div>'
+      + '<div class="post-stats"><span>Likes: ' + p.likes + '</span><span>Comments: ' + (comments[p.id] || []).length + '</span></div></div>';
   }
   document.getElementById('analytics-posts').innerHTML = html || '<div class="empty-state">No published posts yet.</div>';
 }
 
 function metric(label, value, change, dir) {
-  return '<div class="metric-card">'
-    + '<div class="metric-label">' + label + '</div>'
-    + '<div class="metric-value">' + value + '</div>'
-    + '<div class="metric-change ' + dir + '">' + change + '</div>'
-    + '</div>';
+  return '<div class="metric-card"><div class="metric-label">' + label + '</div><div class="metric-value">' + value + '</div><div class="metric-change ' + dir + '">' + change + '</div></div>';
 }
 
 function esc(s) {
-  return String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 function showToast(msg) {
@@ -794,5 +769,8 @@ function showToast(msg) {
   setTimeout(function() { t.classList.remove('show'); }, 2800);
 }
 </script>
+
+<!-- Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </body>
 </html>
