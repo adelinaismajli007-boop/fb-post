@@ -151,7 +151,9 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
     <p>Connect your Facebook page to manage posts, schedule reels from your Google Drive, and keep everything organised.</p>
     <div class="field-label">Facebook Page Access Token</div>
     <input type="password" id="fb-token" placeholder="EAAxxxxxxxxxxxxxxx..." />
-    <div id="fb-err" class="err">Please enter your Facebook access token</div>
+    <div class="field-label">Page ID (optional — auto-detected from token)</div>
+    <input type="text" id="fb-page-id" placeholder="e.g. 123456789012345" />
+    <div id="fb-err" class="err">Please enter your access token</div>
     <button class="connect-btn" onclick="connectApp()">Connect</button>
   </div>
 </div>
@@ -314,49 +316,43 @@ function makeSamplePosts() {
 
 function connectApp() {
   var t = document.getElementById('fb-token').value.trim();
+  var pageId = document.getElementById('fb-page-id').value.trim();
   var errEl = document.getElementById('fb-err');
-  if (!t) { errEl.style.display = 'block'; return; }
+  if (!t) { errEl.style.display = 'block'; errEl.textContent = 'Please enter your access token.'; return; }
   errEl.style.display = 'none';
   state.token = t;
+  state.manualPageId = pageId || null;
   loadFBPages();
 }
 
 function loadFBPages() {
-  fetch('https://graph.facebook.com/v19.0/me/accounts?access_token=' + state.token)
+  // Use /me which works with both User tokens and Page tokens
+  fetch('https://graph.facebook.com/v19.0/me?fields=id,name,access_token&access_token=' + state.token)
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (data.error) {
-        document.getElementById('fb-err').textContent = data.error.message;
-        document.getElementById('fb-err').style.display = 'block';
+        var errEl = document.getElementById('fb-err');
+        errEl.textContent = data.error.message;
+        errEl.style.display = 'block';
         return;
       }
-      if (!data.data || !data.data.length) {
-        document.getElementById('fb-err').textContent = 'No pages found for this token.';
-        document.getElementById('fb-err').style.display = 'block';
-        return;
-      }
-      state.pages = data.data;
-      var i;
-      for (i = 0; i < state.pages.length; i++) {
-        var pid = state.pages[i].id;
-        state.posts[pid] = [];
-        state.descriptions[pid] = '';
-        state.reels[pid] = [];
-      }
+      // Build pages array from the token itself
+      var page = { id: data.id, name: data.name, access_token: state.token };
+      state.pages = [page];
+      state.posts[page.id] = [];
+      state.descriptions[page.id] = '';
+      state.reels[page.id] = [];
       document.getElementById('setup-screen').style.display = 'none';
       document.getElementById('main-app').style.display = 'flex';
       var sel = document.getElementById('page-select');
-      var opts = '';
-      for (i = 0; i < state.pages.length; i++) {
-        opts += '<option value="' + i + '">' + esc(state.pages[i].name) + '</option>';
-      }
-      sel.innerHTML = opts;
+      sel.innerHTML = '<option value="0">' + esc(page.name) + '</option>';
       renderAll();
-      showToast('Connected to Facebook!');
+      showToast('Connected to: ' + page.name);
     })
     .catch(function() {
-      document.getElementById('fb-err').textContent = 'Connection failed. Check your token.';
-      document.getElementById('fb-err').style.display = 'block';
+      var errEl = document.getElementById('fb-err');
+      errEl.textContent = 'Connection failed. Check your token.';
+      errEl.style.display = 'block';
     });
 }
 
