@@ -35,7 +35,8 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 
 .content { padding: 20px; max-width: 780px; margin: 0 auto; width: 100%; }
 .card { background: #fff; border-radius: 14px; box-shadow: 0 1px 6px rgba(0,0,0,.06); padding: 1.25rem 1.5rem; margin-bottom: 14px; }
-.card-title { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 12px; }
+.card-title { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+.card-sub { font-size: 12px; color: #999; margin-bottom: 14px; }
 .section-label { font-size: 11px; font-weight: 600; color: #aaa; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 10px; }
 
 .append-banner { background: #fff; border: 2px solid #1877F2; border-radius: 14px; padding: 14px 18px; margin-bottom: 16px; }
@@ -46,7 +47,6 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 
 .compose-textarea { width: 100%; min-height: 100px; padding: 10px 13px; font-size: 14px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: #fafafa; color: #1a1a2e; resize: vertical; font-family: 'DM Sans', sans-serif; line-height: 1.6; }
 .compose-textarea:focus { outline: none; border-color: #1877F2; background: #fff; }
-
 .scheduler-box { background: #f0f6ff; border: 2px solid #c7d7f9; border-radius: 12px; padding: 15px 17px; margin-top: 14px; }
 .scheduler-title { font-size: 12px; font-weight: 700; color: #1877F2; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 13px; }
 .scheduler-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -59,6 +59,8 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 .btn-secondary { padding: 8px 14px; background: transparent; border: 1.5px solid #1877F2; color: #1877F2; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
 .btn-outline { padding: 7px 13px; background: transparent; border: 1.5px solid #e5e7eb; color: #666; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
 .btn-outline:hover { background: #f4f5f7; }
+.btn-danger { padding: 6px 12px; background: transparent; border: 1.5px solid #fca5a5; color: #e53e3e; border-radius: 8px; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.btn-danger:hover { background: #fef2f2; }
 
 .post-card { background: #fff; border-radius: 12px; box-shadow: 0 1px 5px rgba(0,0,0,.05); padding: 1rem 1.25rem; margin-bottom: 10px; border: 1px solid #f0f0f0; }
 .post-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
@@ -86,33 +88,37 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 .reply-row input:focus { outline: none; border-color: #1877F2; }
 .reply-send { padding: 7px 13px; background: #1877F2; color: white; border: none; border-radius: 8px; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; }
 
-.drive-connect-box { background: #f0f6ff; border: 2px dashed #c7d7f9; border-radius: 12px; padding: 2rem; text-align: center; margin-bottom: 14px; }
-.drive-connect-box h3 { font-size: 15px; font-weight: 600; color: #1a1a2e; margin-bottom: 6px; }
-.drive-connect-box p { font-size: 13px; color: #666; margin-bottom: 16px; line-height: 1.5; }
-.drive-connect-btn { padding: 10px 20px; background: #fff; border: 1.5px solid #4285f4; border-radius: 8px; color: #4285f4; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; display: inline-flex; align-items: center; gap: 8px; }
-.drive-connect-btn:hover { background: #f0f6ff; }
-.drive-connected-bar { background: #d4edda; border: 1px solid #a8d5b5; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
-.drive-connected-bar span { font-size: 13px; color: #1a6630; font-weight: 500; }
+.upload-drop { border: 2px dashed #c7d7f9; border-radius: 12px; padding: 2rem; text-align: center; background: #f8fbff; cursor: pointer; transition: all .2s; margin-bottom: 14px; }
+.upload-drop:hover, .upload-drop.dragover { border-color: #1877F2; background: #eff6ff; }
+.upload-drop input[type=file] { display: none; }
+.upload-drop h3 { font-size: 15px; font-weight: 600; color: #1a1a2e; margin-bottom: 6px; }
+.upload-drop p { font-size: 13px; color: #888; margin-bottom: 14px; }
 
-.drive-search-row { display: flex; gap: 9px; margin-bottom: 11px; }
-.drive-search-row input { flex: 1; padding: 9px 13px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: #fafafa; color: #1a1a2e; font-family: 'DM Sans', sans-serif; }
-.drive-search-row input:focus { outline: none; border-color: #1877F2; background: #fff; }
-.drive-file { display: flex; align-items: center; justify-content: space-between; padding: 10px 13px; border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 7px; background: #fff; cursor: pointer; }
-.drive-file:hover { background: #f0f5ff; border-color: #c7d7f9; }
-.drive-file.posted { opacity: .5; cursor: default; background: #fafafa; }
-.drive-file-left { display: flex; align-items: center; gap: 10px; }
-.drive-icon { width: 30px; height: 30px; border-radius: 8px; background: #e8f0fe; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.drive-name { font-size: 13px; color: #1a1a2e; font-weight: 500; }
-.drive-size { font-size: 11px; color: #aaa; margin-top: 1px; }
-.posted-badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: #d4edda; color: #1a6630; font-weight: 600; white-space: nowrap; }
-.select-badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: #d0e8ff; color: #0050a0; font-weight: 600; white-space: nowrap; }
+.time-slot-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.time-slot-input { padding: 7px 11px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 8px; background: #fff; color: #1a1a2e; font-family: 'DM Sans', sans-serif; }
+.time-slot-badge { font-size: 11px; padding: 3px 9px; border-radius: 20px; background: #d0e8ff; color: #0050a0; font-weight: 600; white-space: nowrap; }
 
-.reel-form { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 14px; }
-.reel-form-title { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 11px; display: flex; align-items: center; justify-content: space-between; }
-.reel-form textarea { width: 100%; min-height: 70px; padding: 9px 12px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 9px; background: #fff; color: #1a1a2e; resize: vertical; font-family: 'DM Sans', sans-serif; margin-bottom: 9px; }
-.reel-form textarea:focus { outline: none; border-color: #1877F2; }
-.reel-form-footer { display: flex; align-items: center; justify-content: space-between; gap: 9px; flex-wrap: wrap; margin-top: 10px; }
-.warn-box { background: #fff8e1; border: 1px solid #f9c83a; border-radius: 9px; padding: 9px 12px; font-size: 12px; color: #7a5c00; margin-bottom: 10px; display: none; }
+.queue-item { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 11px 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+.queue-item.uploading { border-color: #1877F2; background: #f0f6ff; }
+.queue-item.done { opacity: .6; }
+.queue-num { width: 26px; height: 26px; border-radius: 50%; background: #f0f6ff; color: #1877F2; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.queue-info { flex: 1; min-width: 0; }
+.queue-name { font-size: 13px; font-weight: 500; color: #1a1a2e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.queue-slot { font-size: 11px; color: #888; margin-top: 2px; }
+.queue-status { font-size: 11px; padding: 3px 8px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+.status-waiting { background: #fff3cd; color: #856404; }
+.status-uploading { background: #d0e8ff; color: #0050a0; }
+.status-done { background: #d4edda; color: #1a6630; }
+.status-failed { background: #f8d7da; color: #842029; }
+.progress-wrap { margin-top: 6px; }
+.progress-bar-bg { background: #e5e7eb; border-radius: 20px; height: 6px; overflow: hidden; }
+.progress-bar-fill { background: #1877F2; height: 6px; border-radius: 20px; transition: width .3s; }
+.progress-label { font-size: 11px; color: #1877F2; margin-top: 3px; }
+
+.next-post-banner { background: #fff; border: 2px solid #1877F2; border-radius: 12px; padding: 13px 16px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.next-post-info { font-size: 13px; color: #1a1a2e; }
+.next-post-info strong { color: #1877F2; }
+.next-post-countdown { font-size: 20px; font-weight: 600; color: #1877F2; font-variant-numeric: tabular-nums; }
 
 .settings-textarea { width: 100%; min-height: 100px; padding: 10px 13px; font-size: 13px; border: 1.5px solid #e5e7eb; border-radius: 10px; background: #fafafa; color: #1a1a2e; resize: vertical; font-family: 'DM Sans', sans-serif; line-height: 1.6; margin-bottom: 8px; }
 .settings-textarea:focus { outline: none; border-color: #1877F2; background: #fff; }
@@ -124,10 +130,8 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 16px; }
 .metric-card { background: #fff; border-radius: 12px; box-shadow: 0 1px 5px rgba(0,0,0,.05); padding: 1rem 1.1rem; border: 1px solid #f0f0f0; }
 .metric-label { font-size: 11px; color: #aaa; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
-.metric-value { font-size: 24px; font-weight: 600; color: #1a1a2e; }
-.metric-change { font-size: 11px; margin-top: 3px; }
-.up { color: #1a6630; }
-.loading-txt { text-align: center; padding: 1.5rem; color: #888; font-size: 13px; }
+.metric-value { font-size: 22px; font-weight: 600; color: #1a1a2e; }
+.metric-change { font-size: 11px; margin-top: 3px; color: #1a6630; }
 
 #toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(60px); background: #1a1a2e; border-radius: 10px; padding: 10px 20px; font-size: 13px; color: #fff; opacity: 0; transition: all .3s; z-index: 200; white-space: nowrap; pointer-events: none; }
 #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -142,7 +146,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
       <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
     </div>
     <h2>Facebook Page Manager</h2>
-    <p>Connect your Facebook page to manage posts, schedule reels from Google Drive, and keep everything organised.</p>
+    <p>Connect your Facebook page to manage posts and auto-schedule reels from your computer.</p>
     <div class="field-label">Facebook Page Access Token</div>
     <input type="password" id="fb-token" placeholder="EAAxxxxxxxxxxxxxxx..." />
     <div id="fb-err" class="err">Please enter your access token</div>
@@ -160,7 +164,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
     </div>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
       <button class="tab-btn active" onclick="switchTab('posts',this)">Posts</button>
-      <button class="tab-btn" onclick="switchTab('reels',this)">Reels</button>
+      <button class="tab-btn" onclick="switchTab('reels',this)">Reels Queue</button>
       <button class="tab-btn" onclick="switchTab('analytics',this)">Analytics</button>
       <button class="tab-btn" onclick="switchTab('settings',this)">Settings</button>
       <button class="disco-btn" onclick="disconnect()">Disconnect</button>
@@ -169,7 +173,6 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 
   <div class="content">
 
-    <!-- POSTS -->
     <div id="tab-posts">
       <div class="append-banner">
         <div class="append-banner-header">
@@ -179,7 +182,6 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
         <div id="banner-content" style="font-size:13px;color:#444;line-height:1.6;white-space:pre-wrap"></div>
         <div id="banner-empty" style="font-size:13px;color:#bbb;font-style:italic">Nothing set yet. Go to Settings to add your description and hashtags.</div>
       </div>
-
       <div class="card">
         <div class="card-title">Create post</div>
         <textarea class="compose-textarea" id="post-text" placeholder="Write your post content here..." oninput="updateCharCount()"></textarea>
@@ -200,113 +202,63 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
           <div class="scheduler-hint">Leave date empty and click "Publish now" to post immediately.</div>
         </div>
       </div>
-
       <div class="section-label">Recent posts</div>
       <div id="posts-list"></div>
     </div>
 
-    <!-- REELS -->
     <div id="tab-reels" style="display:none">
-      <div id="drive-connect-section">
-        <div class="drive-connect-box">
-          <h3>Connect Google Drive</h3>
-          <p>Sign in with Google to access your <strong>"reels"</strong> folder and pick videos to schedule.</p>
-          <button class="drive-connect-btn" onclick="connectDrive()">
-            <svg width="18" height="18" viewBox="0 0 87.3 78"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 27h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>
-            Sign in with Google
-          </button>
+      <div id="next-post-banner" style="display:none" class="next-post-banner">
+        <div class="next-post-info">Next reel posts at <strong id="next-slot-time">--:--</strong></div>
+        <div class="next-post-countdown" id="next-countdown">--:--:--</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Daily post times</div>
+        <div class="card-sub">Set up to 3 times per day. Reels in your queue will auto-post at these times in order.</div>
+        <div id="time-slots-list"></div>
+        <button class="btn-outline" style="font-size:12px;margin-top:4px" onclick="addTimeSlot()" id="add-slot-btn">+ Add time slot</button>
+        <div style="margin-top:12px"><button class="btn-primary" onclick="saveTimeSlots()">Save schedule</button></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Upload reels to queue</div>
+        <div class="card-sub">Pick video files from your PC. They queue up and post automatically at your set times with your saved description and hashtags.</div>
+        <div class="upload-drop" id="upload-drop" onclick="document.getElementById('reel-file-input').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+          <h3>Click or drag &amp; drop videos here</h3>
+          <p>Supports MP4, MOV, AVI — add multiple files at once</p>
+          <input type="file" id="reel-file-input" accept="video/*" multiple onchange="onFilePick(event)" />
+          <button class="btn-primary" onclick="event.stopPropagation();document.getElementById('reel-file-input').click()">Browse files</button>
         </div>
       </div>
 
-      <div id="drive-connected-section" style="display:none">
-        <div class="drive-connected-bar">
-          <span>Google Drive connected — "reels" folder loaded</span>
-          <button class="btn-outline" style="font-size:11px;padding:4px 10px" onclick="disconnectDrive()">Disconnect</button>
-        </div>
-        <div class="card">
-          <div class="card-title">Search reels</div>
-          <div class="drive-search-row">
-            <input type="text" id="drive-search" placeholder="Type filename to search..." oninput="searchDrive()" />
-          </div>
-          <div id="drive-results"></div>
-          <div id="drive-loading" class="loading-txt" style="display:none">Loading files from your reels folder...</div>
-          <div id="drive-empty" class="empty-state" style="display:none">No files found.</div>
-        </div>
-
-        <div id="reel-form-wrap" style="display:none">
-          <div class="reel-form">
-            <div class="reel-form-title">
-              <span>Reel: <span id="selected-reel-name" style="color:#888;font-weight:400;font-size:12px"></span></span>
-              <button class="btn-outline" style="font-size:11px;padding:4px 9px" onclick="clearReelForm()">Clear</button>
-            </div>
-            <div id="already-posted-warn" class="warn-box">This reel has already been posted. Blocked to prevent duplicates.</div>
-            <div class="field-label" style="margin-bottom:6px">Post text (caption)</div>
-            <textarea id="reel-caption" placeholder="Write the main text for this reel post..."></textarea>
-            <div style="background:#f0f6ff;border:1px solid #c7d7f9;border-radius:8px;padding:9px 12px;margin-bottom:12px;font-size:12px;color:#444;line-height:1.5" id="reel-append-preview"><strong style="color:#1877F2">Auto-appended below:</strong> <span id="reel-append-text">Go to Settings to set your description and hashtags.</span></div>
-
-            <div style="background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;padding:13px;margin-bottom:12px">
-              <div style="font-size:12px;font-weight:700;color:#444;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em">Publish options</div>
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-                <input type="radio" name="reel-mode" id="reel-mode-now" value="now" checked onchange="toggleReelMode()" />
-                <label for="reel-mode-now" style="font-size:13px;font-weight:600;color:#1a1a2e;cursor:pointer">Upload &amp; publish now</label>
-              </div>
-              <div style="display:flex;align-items:center;gap:10px">
-                <input type="radio" name="reel-mode" id="reel-mode-later" value="later" onchange="toggleReelMode()" />
-                <label for="reel-mode-later" style="font-size:13px;font-weight:600;color:#1a1a2e;cursor:pointer">Schedule for later</label>
-              </div>
-            </div>
-
-            <div id="reel-schedule-wrap" style="display:none;margin-bottom:12px">
-              <div style="display:flex;align-items:center;gap:9px">
-                <span style="font-size:13px;font-weight:600;color:#444">Schedule time:</span>
-                <input type="datetime-local" id="reel-schedule-time" style="flex:1;padding:7px 10px;font-size:13px;border:1.5px solid #c7d7f9;border-radius:8px;background:#fff;color:#1a1a2e;font-family:'DM Sans',sans-serif" />
-              </div>
-            </div>
-
-            <div id="reel-progress-wrap" style="display:none;margin-bottom:12px">
-              <div style="font-size:12px;font-weight:600;color:#1877F2;margin-bottom:6px" id="reel-progress-label">Preparing upload...</div>
-              <div style="background:#e5e7eb;border-radius:20px;height:8px;overflow:hidden">
-                <div id="reel-progress-bar" style="background:#1877F2;height:8px;width:0%;border-radius:20px;transition:width .3s"></div>
-              </div>
-            </div>
-
-            <button class="btn-primary" id="reel-submit-btn" onclick="handleReelSubmit()" style="width:100%;padding:11px">Upload &amp; Publish Reel</button>
-          </div>
-        </div>
-
-        <div class="section-label">Scheduled reels</div>
-        <div id="reels-list"></div>
-      </div>
+      <div class="section-label">Reel queue (<span id="queue-count">0</span> reels waiting)</div>
+      <div id="queue-list"></div>
     </div>
 
-    <!-- ANALYTICS -->
     <div id="tab-analytics" style="display:none">
       <div class="analytics-grid" id="analytics-grid"></div>
       <div class="section-label">Recent published posts</div>
       <div id="analytics-posts"></div>
     </div>
 
-    <!-- SETTINGS -->
     <div id="tab-settings" style="display:none">
       <div class="card">
         <div class="card-title">Global Description</div>
-        <p style="font-size:13px;color:#666;margin-bottom:14px;line-height:1.5">Set once — automatically appended to the bottom of every post and reel you publish.</p>
+        <div class="card-sub">Appended to every post and reel automatically.</div>
         <textarea class="settings-textarea" id="global-desc" placeholder="e.g. Follow us for daily updates! Visit our website at www.example.com" oninput="livePreview()"></textarea>
         <div style="font-size:11px;color:#bbb;margin-bottom:12px" id="desc-char-count">0 characters</div>
         <button class="btn-primary" onclick="saveSettings()">Save</button>
       </div>
-
       <div class="card">
         <div class="card-title">Global Hashtags</div>
-        <p style="font-size:13px;color:#666;margin-bottom:14px;line-height:1.5">Set once — appended to every post and reel. Separate with spaces.</p>
+        <div class="card-sub">Appended to every post and reel. Separate with spaces.</div>
         <input type="text" class="settings-input" id="global-hashtags" placeholder="#animals #pets #loveanimals #nature" oninput="livePreview()" />
         <button class="btn-primary" onclick="saveSettings()">Save</button>
       </div>
-
       <div class="card">
-        <div class="card-title">Preview — what gets added to every post</div>
-        <div class="preview-label">Full append preview</div>
-        <div class="preview-box" id="full-preview">Set a description and/or hashtags above and click Save to see the preview.</div>
+        <div class="card-title">Preview</div>
+        <div class="preview-label">What gets added to every post</div>
+        <div class="preview-box" id="full-preview">Set a description and/or hashtags above and click Save.</div>
       </div>
     </div>
 
@@ -316,24 +268,15 @@ body { font-family: 'DM Sans', sans-serif; background: #f4f5f7; color: #1a1a2e; 
 <div id="toast"></div>
 
 <script>
-var GOOGLE_CLIENT_ID = '647916987588-32q7rq22dgqqjv7edaq6jktkjc3k3v4l.apps.googleusercontent.com';
-var DRIVE_SCOPE = 'https://www.googleapis.com/auth/drive.readonly';
-
 var state = {
-  token: '',
-  pages: [],
-  currentIdx: 0,
-  posts: {},
-  reels: {},
-  driveToken: null,
-  driveFiles: [],
-  postedIds: {},
-  globalDesc: '',
-  globalHashtags: ''
+  token: '', pages: [], currentIdx: 0, posts: {},
+  globalDesc: '', globalHashtags: '',
+  timeSlots: [], reelQueue: [], postedFileNames: {}
 };
 var postComments = {};
+var countdownTimer = null;
+var schedulerTimer = null;
 
-/* ---- SETUP ---- */
 function connectApp() {
   var t = document.getElementById('fb-token').value.trim();
   var errEl = document.getElementById('fb-err');
@@ -346,123 +289,121 @@ function connectApp() {
       if (d.error) { errEl.textContent = d.error.message; errEl.style.display = 'block'; return; }
       state.pages = [{ id: d.id, name: d.name, access_token: t }];
       state.posts[d.id] = [];
-      state.reels[d.id] = [];
-      document.getElementById('setup-screen').style.display = 'none';
-      document.getElementById('main-app').style.display = 'flex';
-      document.getElementById('page-select').innerHTML = '<option value="0">' + esc(d.name) + '</option>';
-      renderBanner();
-      renderPosts();
-      renderReels();
-      showToast('Connected to: ' + d.name);
       localStorage.setItem('fb_token', t);
       localStorage.setItem('fb_page_id', d.id);
       localStorage.setItem('fb_page_name', d.name);
-      savePersistentData();
+      loadPersistentData(d.id);
+      showMainApp();
+      showToast('Connected to: ' + d.name);
     })
     .catch(function() { errEl.textContent = 'Connection failed. Check your token.'; errEl.style.display = 'block'; });
 }
 
+function showMainApp() {
+  document.getElementById('setup-screen').style.display = 'none';
+  document.getElementById('main-app').style.display = 'flex';
+  document.getElementById('page-select').innerHTML = '<option value="0">' + esc(pg().name) + '</option>';
+  renderBanner(); renderPosts(); renderQueue(); renderTimeSlots(); startScheduler();
+}
+
 function disconnect() {
-  localStorage.removeItem('fb_token');
-  localStorage.removeItem('fb_page_id');
-  localStorage.removeItem('fb_page_name');
-  localStorage.removeItem('drive_token');
-  state = { token: '', pages: [], currentIdx: 0, posts: {}, reels: {}, driveToken: null, driveFiles: [], postedIds: {}, globalDesc: state.globalDesc, globalHashtags: state.globalHashtags };
+  clearInterval(schedulerTimer); clearInterval(countdownTimer);
+  localStorage.removeItem('fb_token'); localStorage.removeItem('fb_page_id'); localStorage.removeItem('fb_page_name');
+  state = { token: '', pages: [], currentIdx: 0, posts: {}, globalDesc: state.globalDesc, globalHashtags: state.globalHashtags, timeSlots: state.timeSlots, reelQueue: [], postedFileNames: {} };
   postComments = {};
   document.getElementById('setup-screen').style.display = 'flex';
   document.getElementById('main-app').style.display = 'none';
   document.getElementById('fb-token').value = '';
-  document.getElementById('fb-err').style.display = 'none';
 }
 
-function switchPage() {
-  state.currentIdx = parseInt(document.getElementById('page-select').value, 10);
-  renderBanner(); renderPosts(); renderReels();
-}
-
+function switchPage() { state.currentIdx = parseInt(document.getElementById('page-select').value, 10); renderBanner(); renderPosts(); }
 function pg() { return state.pages[state.currentIdx]; }
 function pgPosts() { return state.posts[pg().id] || []; }
-function pgReels() { return state.reels[pg().id] || []; }
 
 function switchTab(tab, btn) {
-  var all = document.querySelectorAll('.tab-btn');
-  var i;
+  var all = document.querySelectorAll('.tab-btn'); var i;
   for (i = 0; i < all.length; i++) all[i].classList.remove('active');
   if (btn) btn.classList.add('active');
   var tabs = ['posts', 'reels', 'analytics', 'settings'];
-  for (i = 0; i < tabs.length; i++) {
-    document.getElementById('tab-' + tabs[i]).style.display = tabs[i] === tab ? '' : 'none';
-  }
+  for (i = 0; i < tabs.length; i++) document.getElementById('tab-' + tabs[i]).style.display = tabs[i] === tab ? '' : 'none';
   if (tab === 'analytics') renderAnalytics();
   if (tab === 'settings') loadSettingsUI();
 }
 
-/* ---- SETTINGS ---- */
+function savePersistentData() {
+  try {
+    var pid = pg() ? pg().id : null;
+    if (pid) localStorage.setItem('posts_' + pid, JSON.stringify(state.posts[pid] || []));
+    var serQueue = state.reelQueue.map(function(r) {
+      return { id: r.id, name: r.name, size: r.size, slotLabel: r.slotLabel, slotTs: r.slotTs, status: r.status };
+    });
+    localStorage.setItem('reel_queue', JSON.stringify(serQueue));
+    localStorage.setItem('posted_names', JSON.stringify(state.postedFileNames));
+    localStorage.setItem('time_slots', JSON.stringify(state.timeSlots));
+  } catch(e) {}
+}
+
+function loadPersistentData(pid) {
+  try {
+    state.globalDesc = localStorage.getItem('global_desc') || '';
+    state.globalHashtags = localStorage.getItem('global_hashtags') || '';
+    var sp = localStorage.getItem('posts_' + pid);
+    if (sp) state.posts[pid] = JSON.parse(sp);
+    var sq = localStorage.getItem('reel_queue');
+    if (sq) {
+      state.reelQueue = JSON.parse(sq);
+      state.reelQueue.forEach(function(r) { if (r.status === 'waiting' || r.status === 'failed') r.needsFile = true; });
+    }
+    var sn = localStorage.getItem('posted_names');
+    if (sn) state.postedFileNames = JSON.parse(sn);
+    var ss = localStorage.getItem('time_slots');
+    state.timeSlots = ss ? JSON.parse(ss) : ['09:00', '14:00', '19:00'];
+  } catch(e) { state.timeSlots = ['09:00', '14:00', '19:00']; }
+}
+
 function loadSettingsUI() {
   document.getElementById('global-desc').value = state.globalDesc;
   document.getElementById('global-hashtags').value = state.globalHashtags;
-  updateDescCharCount();
-  updateFullPreview();
+  updateDescCharCount(); updateFullPreview();
 }
-
-function livePreview() {
-  updateDescCharCount();
-  updateFullPreview();
-}
-
-function updateDescCharCount() {
-  var len = (document.getElementById('global-desc').value || '').length;
-  document.getElementById('desc-char-count').textContent = len + ' characters';
-}
-
+function livePreview() { updateDescCharCount(); updateFullPreview(); }
+function updateDescCharCount() { document.getElementById('desc-char-count').textContent = (document.getElementById('global-desc').value || '').length + ' characters'; }
 function updateFullPreview() {
   var desc = (document.getElementById('global-desc').value || '').trim();
   var tags = (document.getElementById('global-hashtags').value || '').trim();
-  var prev = document.getElementById('full-preview');
   var parts = [];
   if (tags) parts.push(tags);
   if (desc) parts.push(desc);
-  prev.textContent = parts.length ? parts.join('\n\n') : 'Set a description and/or hashtags above and click Save to see the preview.';
+  document.getElementById('full-preview').textContent = parts.length ? parts.join('\n\n') : 'Set a description and/or hashtags above and click Save.';
 }
-
 function saveSettings() {
   state.globalDesc = (document.getElementById('global-desc').value || '').trim();
   state.globalHashtags = (document.getElementById('global-hashtags').value || '').trim();
   localStorage.setItem('global_desc', state.globalDesc);
   localStorage.setItem('global_hashtags', state.globalHashtags);
-  updateFullPreview();
-  renderBanner();
-  showToast('Settings saved! Applied to all future posts.');
+  updateFullPreview(); renderBanner();
+  showToast('Settings saved!');
 }
 
-/* ---- BANNER ---- */
-function renderBanner() {
-  var parts = [];
-  if (state.globalHashtags) parts.push(state.globalHashtags);
-  if (state.globalDesc) parts.push(state.globalDesc);
-  var bannerContent = document.getElementById('banner-content');
-  var bannerEmpty = document.getElementById('banner-empty');
-  if (parts.length) {
-    bannerContent.textContent = parts.join('\n\n');
-    bannerContent.style.display = 'block';
-    bannerEmpty.style.display = 'none';
-  } else {
-    bannerContent.style.display = 'none';
-    bannerEmpty.style.display = 'block';
-  }
-}
-
-/* ---- COMPOSE ---- */
 function buildPostText(text) {
-  var parts = [text];
+  var parts = [];
+  if (text) parts.push(text);
   if (state.globalHashtags) parts.push(state.globalHashtags);
   if (state.globalDesc) parts.push(state.globalDesc);
   return parts.join('\n\n');
 }
 
-function updateCharCount() {
-  document.getElementById('char-count').textContent = document.getElementById('post-text').value.length + ' / 63,206';
+function renderBanner() {
+  var parts = [];
+  if (state.globalHashtags) parts.push(state.globalHashtags);
+  if (state.globalDesc) parts.push(state.globalDesc);
+  var bc = document.getElementById('banner-content');
+  var be = document.getElementById('banner-empty');
+  if (parts.length) { bc.textContent = parts.join('\n\n'); bc.style.display = 'block'; be.style.display = 'none'; }
+  else { bc.style.display = 'none'; be.style.display = 'block'; }
 }
+
+function updateCharCount() { document.getElementById('char-count').textContent = document.getElementById('post-text').value.length + ' / 63,206'; }
 
 function publishPost() {
   var text = document.getElementById('post-text').value.trim();
@@ -470,23 +411,19 @@ function publishPost() {
   var fullText = buildPostText(text);
   var pid = pg().id;
   fetch('https://graph.facebook.com/v19.0/' + pid + '/feed', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message: fullText, access_token: pg().access_token })
   })
   .then(function(r) { return r.json(); })
   .then(function(d) {
     if (d.error) { showToast('Error: ' + d.error.message); return; }
-    var np = { id: d.id, text: fullText, time: nowLabel(), status: 'published', likes: 0, reach: 0, type: 'post' };
-    state.posts[pid].unshift(np);
-    postComments[np.id] = [];
+    addPost({ id: d.id, text: fullText, time: nowLabel(), status: 'published', likes: 0, type: 'post' });
     document.getElementById('post-text').value = '';
     document.getElementById('schedule-time').value = '';
     updateCharCount();
-    renderPosts();
-    showToast('Post published to Facebook!');
+    showToast('Post published!');
   })
-  .catch(function() { showToast('Failed to publish. Check your token.'); });
+  .catch(function() { showToast('Failed to publish.'); });
 }
 
 function schedulePost() {
@@ -494,91 +431,45 @@ function schedulePost() {
   var t = document.getElementById('schedule-time').value;
   if (!text) { showToast('Please write something first.'); return; }
   if (!t) { showToast('Please pick a schedule time.'); return; }
-  var schedDate = new Date(t);
-  var nowDate = new Date();
-  if (schedDate <= nowDate) { showToast('Please pick a future date and time.'); return; }
-  var unixTime = Math.floor(schedDate.getTime() / 1000);
-  var label = fmtDate(schedDate);
-  var pid = pg().id;
-  var fullText = buildPostText(text);
-  // Try to schedule via Facebook API
-  fetch('https://graph.facebook.com/v19.0/' + pid + '/feed', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      message: fullText,
-      published: false,
-      scheduled_publish_time: unixTime,
-      access_token: pg().access_token
-    })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(d) {
-    var np;
-    if (d.error) {
-      // Facebook scheduling requires app review - fall back to local schedule
-      np = { id: 'local_' + Date.now(), text: fullText, time: label, scheduleTs: schedDate.getTime(), status: 'scheduled', likes: 0, reach: 0, type: 'post', fbScheduled: false };
-      showToast('Saved locally — will remind you to post at ' + label);
-    } else {
-      np = { id: d.id, text: fullText, time: label, scheduleTs: schedDate.getTime(), status: 'scheduled', likes: 0, reach: 0, type: 'post', fbScheduled: true };
-      showToast('Scheduled on Facebook for ' + label + '!');
-    }
-    state.posts[pid].unshift(np);
-    postComments[np.id] = [];
-    document.getElementById('post-text').value = '';
-    document.getElementById('schedule-time').value = '';
-    updateCharCount();
-    savePersistentData();
-    renderPosts();
-  })
-  .catch(function() {
-    var schedDate2 = new Date(t);
-    var np = { id: 'local_' + Date.now(), text: fullText, time: label, scheduleTs: schedDate2.getTime(), status: 'scheduled', likes: 0, reach: 0, type: 'post', fbScheduled: false };
-    state.posts[pid].unshift(np);
-    postComments[np.id] = [];
-    document.getElementById('post-text').value = '';
-    document.getElementById('schedule-time').value = '';
-    updateCharCount();
-    savePersistentData();
-    renderPosts();
-    showToast('Saved locally for ' + label);
-  });
+  var d = new Date(t);
+  if (d <= new Date()) { showToast('Please pick a future time.'); return; }
+  addPost({ id: 'local_' + Date.now(), text: buildPostText(text), time: fmtDate(d), scheduleTs: d.getTime(), status: 'scheduled', likes: 0, type: 'post' });
+  document.getElementById('post-text').value = '';
+  document.getElementById('schedule-time').value = '';
+  updateCharCount();
+  showToast('Scheduled for ' + fmtDate(d));
 }
 
-/* ---- POSTS ---- */
+function addPost(p) {
+  if (!postComments[p.id]) postComments[p.id] = [];
+  state.posts[pg().id].unshift(p);
+  savePersistentData(); renderPosts();
+}
+
 function renderPosts() {
   var list = document.getElementById('posts-list');
   var posts = pgPosts();
   if (!posts.length) { list.innerHTML = '<div class="empty-state">No posts yet.</div>'; return; }
-  var html = '';
-  var i;
+  var html = ''; var i;
   for (i = 0; i < posts.length; i++) {
     var p = posts[i];
     var cs = postComments[p.id] || [];
-    var reelBadge = p.type === 'reel' ? '<span class="badge badge-reel">Reel</span>' : '';
-    var statusBadge = '<span class="badge ' + (p.status === 'published' ? 'badge-pub">Published' : 'badge-sched">Scheduled') + '</span>';
-    var stats = p.status === 'published'
+    var rb = p.type === 'reel' ? '<span class="badge badge-reel">Reel</span>' : '';
+    var sb = '<span class="badge ' + (p.status === 'published' ? 'badge-pub">Published' : 'badge-sched">Scheduled') + '</span>';
+    var st = p.status === 'published'
       ? '<div class="post-stats"><span>Likes: ' + p.likes + '</span><span>Comments: ' + cs.length + '</span></div>'
       : '<div class="post-stats"><span style="color:#93c5fd">Waiting to go live</span></div>';
-    var cBtn = (p.status === 'published' && p.type !== 'reel')
-      ? '<button class="action-btn" onclick="toggleComments(\'' + p.id + '\')">Comments (' + cs.length + ')</button>' : '';
-    html += '<div class="post-card">'
-      + '<div class="post-header"><span class="post-meta">' + esc(p.time) + '</span>'
-      + '<div class="badges">' + reelBadge + statusBadge + '</div></div>'
-      + '<div class="post-text">' + esc(p.text) + '</div>' + stats
-      + '<div class="post-actions">' + cBtn
-      + '<button class="action-btn" style="color:#e53e3e" onclick="deletePost(\'' + p.id + '\')">Delete</button></div>'
-      + '<div class="comments-section" id="cs-' + p.id + '">'
-      + '<div id="cl-' + p.id + '">' + renderClist(p.id) + '</div>'
+    var cb = p.status === 'published' ? '<button class="action-btn" onclick="toggleComments(\'' + p.id + '\')">Comments (' + cs.length + ')</button>' : '';
+    html += '<div class="post-card"><div class="post-header"><span class="post-meta">' + esc(p.time) + '</span><div class="badges">' + rb + sb + '</div></div>'
+      + '<div class="post-text">' + esc(p.text) + '</div>' + st
+      + '<div class="post-actions">' + cb + '<button class="action-btn" style="color:#e53e3e" onclick="deletePost(\'' + p.id + '\')">Delete</button></div>'
+      + '<div class="comments-section" id="cs-' + p.id + '"><div id="cl-' + p.id + '">' + renderClist(p.id) + '</div>'
       + '<div class="reply-row"><input type="text" id="ri-' + p.id + '" placeholder="Reply as page..." />'
       + '<button class="reply-send" onclick="sendReply(\'' + p.id + '\')">Reply</button></div></div></div>';
   }
   list.innerHTML = html;
   for (i = 0; i < posts.length; i++) {
-    (function(pid) {
-      var el = document.getElementById('ri-' + pid);
-      if (el) el.addEventListener('keydown', function(e) { if (e.key === 'Enter') sendReply(pid); });
-    })(posts[i].id);
+    (function(pid) { var el = document.getElementById('ri-' + pid); if (el) el.addEventListener('keydown', function(e) { if (e.key === 'Enter') sendReply(pid); }); })(posts[i].id);
   }
 }
 
@@ -586,498 +477,245 @@ function renderClist(pid) {
   var cs = postComments[pid] || [];
   if (!cs.length) return '<div style="font-size:12px;color:#bbb;margin-bottom:8px">No comments yet.</div>';
   var h = '';
-  for (var i = 0; i < cs.length; i++) {
-    var c = cs[i];
-    h += '<div class="comment-item"><div class="c-avatar">' + esc(c.initials) + '</div>'
-      + '<div class="c-bubble"><div class="c-author">' + esc(c.author) + '</div>'
-      + '<div class="c-text">' + esc(c.text) + '</div>'
-      + '<div class="c-time">' + esc(c.time) + '</div></div></div>';
-  }
+  cs.forEach(function(c) { h += '<div class="comment-item"><div class="c-avatar">' + esc(c.initials) + '</div><div class="c-bubble"><div class="c-author">' + esc(c.author) + '</div><div class="c-text">' + esc(c.text) + '</div><div class="c-time">' + c.time + '</div></div></div>'; });
   return h;
 }
 
-function toggleComments(pid) {
-  var el = document.getElementById('cs-' + pid);
-  el.style.display = el.style.display === 'block' ? 'none' : 'block';
-}
-
+function toggleComments(pid) { var el = document.getElementById('cs-' + pid); el.style.display = el.style.display === 'block' ? 'none' : 'block'; }
 function sendReply(pid) {
-  var inp = document.getElementById('ri-' + pid);
-  var t = inp.value.trim();
-  if (!t) return;
+  var inp = document.getElementById('ri-' + pid); var t = inp.value.trim(); if (!t) return;
   if (!postComments[pid]) postComments[pid] = [];
   postComments[pid].push({ initials: pg().name.slice(0, 2).toUpperCase(), author: pg().name, text: t, time: 'Just now' });
-  inp.value = '';
-  document.getElementById('cl-' + pid).innerHTML = renderClist(pid);
-  showToast('Reply posted!');
+  inp.value = ''; document.getElementById('cl-' + pid).innerHTML = renderClist(pid); showToast('Reply posted!');
 }
-
 function deletePost(pid) {
-  var id = pg().id;
-  var out = [];
-  for (var i = 0; i < state.posts[id].length; i++) {
-    if (state.posts[id][i].id !== pid) out.push(state.posts[id][i]);
-  }
-  state.posts[id] = out;
-  savePersistentData();
-  renderPosts();
-  showToast('Post deleted.');
+  state.posts[pg().id] = state.posts[pg().id].filter(function(p) { return p.id !== pid; });
+  savePersistentData(); renderPosts(); showToast('Deleted.');
 }
 
-/* ---- DRIVE ---- */
-function connectDrive() {
-  if (typeof google === 'undefined' || !google.accounts) {
-    showToast('Google script not loaded yet, please wait.');
-    return;
+function renderTimeSlots() {
+  var c = document.getElementById('time-slots-list'); var html = '';
+  for (var i = 0; i < state.timeSlots.length; i++) {
+    html += '<div class="time-slot-row"><span class="time-slot-badge">Slot ' + (i+1) + '</span>'
+      + '<input type="time" class="time-slot-input" value="' + esc(state.timeSlots[i]) + '" id="slot-' + i + '" />'
+      + '<button class="btn-danger" onclick="removeSlot(' + i + ')">Remove</button></div>';
   }
-  var tc = google.accounts.oauth2.initTokenClient({
-    client_id: GOOGLE_CLIENT_ID,
-    scope: DRIVE_SCOPE,
-    ux_mode: 'popup',
-    callback: function(resp) {
-      if (resp.error) { showToast('Google sign in failed.'); return; }
-      state.driveToken = resp.access_token;
-      localStorage.setItem('drive_token', resp.access_token);
-      document.getElementById('drive-connect-section').style.display = 'none';
-      document.getElementById('drive-connected-section').style.display = 'block';
-      loadReelsFolder();
-    }
+  c.innerHTML = html;
+  document.getElementById('add-slot-btn').style.display = state.timeSlots.length >= 3 ? 'none' : '';
+}
+
+function addTimeSlot() { if (state.timeSlots.length >= 3) { showToast('Max 3 slots.'); return; } state.timeSlots.push('12:00'); renderTimeSlots(); }
+function removeSlot(i) { state.timeSlots.splice(i, 1); renderTimeSlots(); }
+function saveTimeSlots() {
+  var slots = [];
+  for (var i = 0; i < state.timeSlots.length; i++) { var v = document.getElementById('slot-' + i).value; if (v) slots.push(v); }
+  slots.sort(); state.timeSlots = slots; savePersistentData(); renderTimeSlots(); assignSlotsToQueue();
+  showToast('Schedule saved: ' + slots.join(', '));
+}
+
+function onDragOver(e) { e.preventDefault(); document.getElementById('upload-drop').classList.add('dragover'); }
+function onDragLeave() { document.getElementById('upload-drop').classList.remove('dragover'); }
+function onDrop(e) { e.preventDefault(); document.getElementById('upload-drop').classList.remove('dragover'); addFilesToQueue(Array.from(e.dataTransfer.files)); }
+function onFilePick(e) { addFilesToQueue(Array.from(e.target.files)); e.target.value = ''; }
+
+function addFilesToQueue(files) {
+  var added = 0;
+  files.forEach(function(file) {
+    if (!file.type.startsWith('video/')) return;
+    if (state.postedFileNames[file.name]) { showToast(file.name + ' already posted.'); return; }
+    if (state.reelQueue.some(function(r) { return r.name === file.name; })) { showToast(file.name + ' already queued.'); return; }
+    state.reelQueue.push({ id: 'q_' + Date.now() + '_' + Math.random(), name: file.name, size: file.size, file: file, status: 'waiting', slotLabel: '', slotTs: 0 });
+    added++;
   });
-  tc.requestAccessToken({ prompt: 'consent' });
+  if (added) { assignSlotsToQueue(); savePersistentData(); renderQueue(); showToast('Added ' + added + ' reel(s) to queue!'); }
 }
 
-function disconnectDrive() {
-  localStorage.removeItem('drive_token');
-  state.driveToken = null;
-  state.driveFiles = [];
-  document.getElementById('drive-connect-section').style.display = 'block';
-  document.getElementById('drive-connected-section').style.display = 'none';
-  document.getElementById('drive-results').innerHTML = '';
-  document.getElementById('drive-search').value = '';
-  document.getElementById('reel-form-wrap').style.display = 'none';
-}
-
-function loadReelsFolder() {
-  var loadEl = document.getElementById('drive-loading');
-  loadEl.style.display = 'block';
-  var base = 'https://www.googleapis.com/drive/v3/files';
-  var headers = { 'Authorization': 'Bearer ' + state.driveToken };
-  fetch(base + '?q=name%3D%27reels%27+and+mimeType%3D%27application%2Fvnd.google-apps.folder%27&fields=files(id,name)', { headers: headers })
-    .then(function(r) { return r.json(); })
-    .then(function(d) {
-      if (!d.files || !d.files.length) {
-        loadEl.style.display = 'none';
-        var em = document.getElementById('drive-empty');
-        em.textContent = 'No folder named "reels" found in your Drive.';
-        em.style.display = 'block';
-        return null;
-      }
-      var fid = d.files[0].id;
-      return fetch(base + '?q=%27' + fid + '%27+in+parents+and+mimeType+contains+%27video%27&fields=files(id,name,size)&orderBy=name', { headers: headers });
-    })
-    .then(function(r) { if (r) return r.json(); })
-    .then(function(d) {
-      loadEl.style.display = 'none';
-      if (!d || !d.files) return;
-      state.driveFiles = d.files;
-      showToast('Found ' + d.files.length + ' video(s) in your reels folder!');
-    })
-    .catch(function() { loadEl.style.display = 'none'; showToast('Failed to load Drive files.'); });
-}
-
-var selectedFile = null;
-
-function searchDrive() {
-  var q = document.getElementById('drive-search').value.trim().toLowerCase();
-  var resEl = document.getElementById('drive-results');
-  var emEl = document.getElementById('drive-empty');
-  if (!q) { resEl.innerHTML = ''; emEl.style.display = 'none'; return; }
-  var h = '';
-  var found = 0;
-  for (var i = 0; i < state.driveFiles.length; i++) {
-    var f = state.driveFiles[i];
-    if (f.name.toLowerCase().indexOf(q) === -1) continue;
-    found++;
-    var posted = !!state.postedIds[f.id];
-    var sz = f.size ? (Math.round(parseInt(f.size, 10) / 1048576) + ' MB') : '';
-    h += '<div class="drive-file' + (posted ? ' posted' : '') + '" onclick="driveClick(\'' + f.id + '\',' + posted + ')">'
-      + '<div class="drive-file-left"><div class="drive-icon">'
-      + '<svg width="16" height="16" viewBox="0 0 87.3 78"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 27h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>'
-      + '</div><div><div class="drive-name">' + esc(f.name) + '</div><div class="drive-size">' + sz + '</div></div></div>'
-      + (posted ? '<span class="posted-badge">Already posted</span>' : '<span class="select-badge">Select</span>')
-      + '</div>';
+function assignSlotsToQueue() {
+  if (!state.timeSlots.length) return;
+  var now = new Date();
+  var slotIdx = 0; var dateOffset = 0;
+  var foundFuture = false;
+  for (var si = 0; si < state.timeSlots.length; si++) {
+    var parts = state.timeSlots[si].split(':');
+    var test = new Date(); test.setHours(parseInt(parts[0],10), parseInt(parts[1],10), 0, 0);
+    if (test > now) { slotIdx = si; foundFuture = true; break; }
   }
-  if (!found) { resEl.innerHTML = ''; emEl.style.display = 'block'; }
-  else { emEl.style.display = 'none'; resEl.innerHTML = h; }
-}
-
-function driveClick(fid, posted) {
-  if (posted) { showToast('Already posted. Blocked to prevent duplicates.'); return; }
-  var f = null;
-  for (var i = 0; i < state.driveFiles.length; i++) {
-    if (state.driveFiles[i].id === fid) { f = state.driveFiles[i]; break; }
-  }
-  if (!f) return;
-  selectedFile = f;
-  document.getElementById('selected-reel-name').textContent = f.name;
-  document.getElementById('already-posted-warn').style.display = 'none';
-  document.getElementById('reel-submit-btn').disabled = false;
-  document.getElementById('reel-submit-btn').style.opacity = '1';
-  document.getElementById('reel-form-wrap').style.display = 'block';
-  document.getElementById('reel-caption').value = '';
-  document.getElementById('reel-schedule-time').value = '';
-  updateReelAppendPreview();
-}
-
-function updateReelAppendPreview() {
-  var el = document.getElementById('reel-append-text');
-  if (!el) return;
-  var parts = [];
-  if (state.globalHashtags) parts.push(state.globalHashtags);
-  if (state.globalDesc) parts.push(state.globalDesc);
-  el.textContent = parts.length ? parts.join(' | ') : 'Go to Settings to set your description and hashtags.';
-}
-
-function clearReelForm() {
-  selectedFile = null;
-  document.getElementById('reel-form-wrap').style.display = 'none';
-  document.getElementById('drive-search').value = '';
-  document.getElementById('drive-results').innerHTML = '';
-}
-
-function toggleReelMode() {
-  var mode = document.querySelector('input[name="reel-mode"]:checked').value;
-  document.getElementById('reel-schedule-wrap').style.display = mode === 'later' ? 'block' : 'none';
-  document.getElementById('reel-submit-btn').textContent = mode === 'later' ? 'Schedule Reel' : 'Upload & Publish Reel';
-}
-
-function handleReelSubmit() {
-  var mode = document.querySelector('input[name="reel-mode"]:checked').value;
-  if (mode === 'later') {
-    scheduleReelLater();
-  } else {
-    uploadAndPublishReel();
-  }
-}
-
-function scheduleReelLater() {
-  if (!selectedFile) return;
-  var caption = document.getElementById('reel-caption').value.trim();
-  var t = document.getElementById('reel-schedule-time').value;
-  if (!caption) { showToast('Please add a caption.'); return; }
-  if (!t) { showToast('Please pick a schedule time.'); return; }
-  var schedDate = new Date(t);
-  if (schedDate <= new Date()) { showToast('Please pick a future date and time.'); return; }
-  var label = fmtDate(schedDate);
-  var pid = pg().id;
-  var fullText = buildPostText(caption);
-  var nr = {
-    id: 'reel_' + Date.now(),
-    fileId: selectedFile.id,
-    fileName: selectedFile.name,
-    text: fullText,
-    originalCaption: caption,
-    time: label,
-    scheduleTs: schedDate.getTime(),
-    status: 'scheduled',
-    likes: 0, reach: 0, type: 'reel',
-    pendingUpload: true
-  };
-  state.reels[pid].push(nr);
-  state.posts[pid].unshift({ id: nr.id, fileId: nr.fileId, fileName: nr.fileName, text: nr.text, originalCaption: nr.originalCaption, time: nr.time, scheduleTs: nr.scheduleTs, status: nr.status, likes: 0, reach: 0, type: 'reel', pendingUpload: true });
-  state.postedIds[selectedFile.id] = true;
-  postComments[nr.id] = [];
-  renderPosts();
-  renderReels();
-  savePersistentData();
-  clearReelForm();
-  showToast('Reel scheduled for ' + label + ' — will auto-upload at that time!');
-}
-
-function uploadAndPublishReel() {
-  if (!selectedFile) return;
-  var caption = document.getElementById('reel-caption').value.trim();
-  if (!caption) { showToast('Please add a caption.'); return; }
-  var fullText = buildPostText(caption);
-  var pid = pg().id;
-  var pageToken = pg().access_token;
-
-  setReelProgress(true, 'Downloading video from Google Drive...', 5);
-  document.getElementById('reel-submit-btn').disabled = true;
-
-  // Step 1: Download video from Google Drive
-  fetch('https://www.googleapis.com/drive/v3/files/' + selectedFile.id + '?alt=media', {
-    headers: { 'Authorization': 'Bearer ' + state.driveToken }
-  })
-  .then(function(r) {
-    if (!r.ok) throw new Error('Failed to download from Drive');
-    return r.blob();
-  })
-  .then(function(blob) {
-    setReelProgress(true, 'Initializing Facebook upload...', 20);
-    var fileSize = blob.size;
-    var mimeType = blob.type || 'video/mp4';
-
-    // Step 2: Initialize upload session with Facebook
-    return fetch('https://graph.facebook.com/v19.0/' + pid + '/video_reels', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        upload_phase: 'start',
-        access_token: pageToken
-      })
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(initData) {
-      if (initData.error) throw new Error(initData.error.message);
-      var videoId = initData.video_id;
-      var uploadUrl = initData.upload_url || ('https://rupload.facebook.com/video-upload/v19.0/' + videoId);
-      setReelProgress(true, 'Uploading video to Facebook...', 40);
-
-      // Step 3: Upload the video bytes
-      return fetch(uploadUrl, {
-        method: 'POST',
-        headers: {
-          'Authorization': 'OAuth ' + pageToken,
-          'offset': '0',
-          'file_size': String(fileSize),
-          'Content-Type': mimeType
-        },
-        body: blob
-      })
-      .then(function(r) { return r.json(); })
-      .then(function(uploadData) {
-        if (uploadData.error) throw new Error(uploadData.error.message);
-        setReelProgress(true, 'Publishing reel...', 80);
-
-        // Step 4: Finish and publish
-        return fetch('https://graph.facebook.com/v19.0/' + pid + '/video_reels', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            upload_phase: 'finish',
-            video_id: videoId,
-            video_state: 'PUBLISHED',
-            description: fullText,
-            access_token: pageToken
-          })
-        });
-      })
-      .then(function(r) { return r.json(); })
-      .then(function(publishData) {
-        if (publishData.error) throw new Error(publishData.error.message);
-        setReelProgress(true, 'Reel published successfully!', 100);
-        var nr = {
-          id: videoId || ('reel_' + Date.now()),
-          fileId: selectedFile.id,
-          fileName: selectedFile.name,
-          text: fullText,
-          time: nowLabel(),
-          status: 'published',
-          likes: 0, reach: 0, type: 'reel'
-        };
-        state.reels[pid].push(nr);
-        state.posts[pid].unshift({ id: nr.id, fileId: nr.fileId, fileName: nr.fileName, text: nr.text, time: nr.time, status: nr.status, likes: 0, reach: 0, type: 'reel' });
-        state.postedIds[selectedFile.id] = true;
-        postComments[nr.id] = [];
-        savePersistentData();
-        setTimeout(function() {
-          setReelProgress(false, '', 0);
-          document.getElementById('reel-submit-btn').disabled = false;
-          renderPosts();
-          renderReels();
-          clearReelForm();
-          showToast('Reel published to Facebook!');
-        }, 1500);
-      });
-    });
-  })
-  .catch(function(err) {
-    setReelProgress(false, '', 0);
-    document.getElementById('reel-submit-btn').disabled = false;
-    var msg = err.message || 'Upload failed';
-    if (msg.indexOf('permissions') !== -1 || msg.indexOf('OAuthException') !== -1) {
-      showToast('Permission error — your token may need video_manage permission');
-    } else {
-      showToast('Upload failed: ' + msg.slice(0, 60));
-    }
+  if (!foundFuture) { slotIdx = 0; dateOffset = 1; }
+  state.reelQueue.forEach(function(r) {
+    if (r.status === 'done') return;
+    var sp = state.timeSlots[slotIdx].split(':');
+    var d = new Date(); d.setDate(d.getDate() + dateOffset);
+    d.setHours(parseInt(sp[0],10), parseInt(sp[1],10), 0, 0);
+    r.slotLabel = fmtDate(d); r.slotTs = d.getTime();
+    slotIdx++;
+    if (slotIdx >= state.timeSlots.length) { slotIdx = 0; dateOffset++; }
   });
+  renderQueue(); updateNextPostBanner();
 }
 
-function setReelProgress(show, label, pct) {
-  var wrap = document.getElementById('reel-progress-wrap');
-  var lbl = document.getElementById('reel-progress-label');
-  var bar = document.getElementById('reel-progress-bar');
-  wrap.style.display = show ? 'block' : 'none';
-  if (lbl) lbl.textContent = label;
-  if (bar) bar.style.width = pct + '%';
+function renderQueue() {
+  var list = document.getElementById('queue-list');
+  var waiting = state.reelQueue.filter(function(r) { return r.status !== 'done'; });
+  document.getElementById('queue-count').textContent = waiting.length;
+  if (!state.reelQueue.length) { list.innerHTML = '<div class="empty-state">No reels in queue. Upload videos above.</div>'; return; }
+  var html = '';
+  for (var i = 0; i < state.reelQueue.length; i++) {
+    var r = state.reelQueue[i];
+    var sz = r.size ? (Math.round(r.size / 1048576) + ' MB') : '';
+    var sc = r.status === 'done' ? 'status-done">Published' : r.status === 'uploading' ? 'status-uploading">Uploading...' : r.status === 'failed' ? 'status-failed">Failed' : 'status-waiting">Waiting';
+    var warn = (r.needsFile && r.status !== 'done') ? '<div style="font-size:11px;color:#e53e3e;margin-top:3px">Re-add this file — lost after page refresh</div>' : '';
+    var prog = r.status === 'uploading' ? '<div class="progress-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="pb-' + r.id + '" style="width:' + (r.progress||0) + '%"></div></div><div class="progress-label" id="pl-' + r.id + '">' + esc(r.progressLabel||'Uploading...') + '</div></div>' : '';
+    html += '<div class="queue-item' + (r.status==='uploading'?' uploading':r.status==='done'?' done':'') + '">'
+      + '<div class="queue-num">' + (i+1) + '</div>'
+      + '<div class="queue-info"><div class="queue-name">' + esc(r.name) + (sz?' <span style="color:#bbb;font-weight:400">('+sz+')</span>':'') + '</div>'
+      + '<div class="queue-slot">' + (r.slotLabel ? 'Posts at: ' + r.slotLabel : 'Save a schedule above') + '</div>'
+      + warn + prog + '</div>'
+      + '<div style="display:flex;align-items:center;gap:8px"><span class="queue-status ' + sc + '</span>'
+      + (r.status!=='uploading'?'<button class="btn-danger" onclick="removeFromQueue(\''+r.id+'\')">Remove</button>':'')
+      + '</div></div>';
+  }
+  list.innerHTML = html;
 }
 
-function checkScheduledReels() {
-  var pid = pg() ? pg().id : null;
-  if (!pid) return;
-  var reels = state.reels[pid] || [];
+function removeFromQueue(id) {
+  state.reelQueue = state.reelQueue.filter(function(r) { return r.id !== id; });
+  assignSlotsToQueue(); savePersistentData(); renderQueue();
+}
+
+function updateNextPostBanner() {
+  var banner = document.getElementById('next-post-banner');
+  var next = null;
+  for (var i = 0; i < state.reelQueue.length; i++) {
+    if (state.reelQueue[i].status === 'waiting' && state.reelQueue[i].slotTs > 0) { next = state.reelQueue[i]; break; }
+  }
+  if (!next) { banner.style.display = 'none'; return; }
+  banner.style.display = 'flex';
+  document.getElementById('next-slot-time').textContent = next.slotLabel;
+  updateCountdown(next.slotTs);
+}
+
+function updateCountdown(ts) {
+  clearInterval(countdownTimer);
+  countdownTimer = setInterval(function() {
+    var diff = ts - Date.now();
+    if (diff <= 0) { clearInterval(countdownTimer); document.getElementById('next-countdown').textContent = 'Now!'; return; }
+    var h = Math.floor(diff/3600000); var m = Math.floor((diff%3600000)/60000); var s = Math.floor((diff%60000)/1000);
+    document.getElementById('next-countdown').textContent = pad(h)+':'+pad(m)+':'+pad(s);
+  }, 1000);
+}
+function pad(n) { return n < 10 ? '0'+n : String(n); }
+
+function startScheduler() {
+  clearInterval(schedulerTimer);
+  schedulerTimer = setInterval(checkQueue, 30000);
+  checkQueue(); updateNextPostBanner();
+}
+
+function checkQueue() {
   var now = Date.now();
-  for (var i = 0; i < reels.length; i++) {
-    var r = reels[i];
-    if (r.status === 'scheduled' && r.pendingUpload && r.scheduleTs && r.scheduleTs <= now) {
-      r.pendingUpload = false;
-      showToast('Time to publish reel: ' + r.fileName + ' — uploading now...');
-      selectedFile = { id: r.fileId, name: r.fileName };
-      // Use only the original caption (without appended desc/tags) to avoid double-append
-      document.getElementById('reel-caption').value = r.originalCaption || r.text;
-      uploadAndPublishReel();
+  for (var i = 0; i < state.reelQueue.length; i++) {
+    var r = state.reelQueue[i];
+    if (r.status === 'waiting' && r.slotTs > 0 && r.slotTs <= now) {
+      if (r.file) { uploadReel(r); }
+      else { r.status = 'failed'; r.needsFile = true; savePersistentData(); renderQueue(); showToast('Re-add "' + r.name + '" — not available after refresh'); }
+      break;
     }
   }
+  updateNextPostBanner();
 }
 
-setInterval(checkScheduledReels, 60000);
+function uploadReel(r) {
+  r.status = 'uploading'; r.progress = 0; r.progressLabel = 'Starting...';
+  renderQueue();
+  var pid = pg().id; var pageToken = pg().access_token;
+  var caption = buildPostText('');
 
-function renderReels() {
-  var list = document.getElementById('reels-list');
-  var reels = pgReels();
-  if (!reels.length) { list.innerHTML = '<div class="empty-state">No reels scheduled yet.</div>'; return; }
-  var h = '';
-  for (var i = 0; i < reels.length; i++) {
-    var r = reels[i];
-    var sc = r.status === 'published' ? 'badge-pub">Published' : 'badge-sched">Scheduled';
-    var preview = r.text.length > 130 ? r.text.slice(0, 130) + '...' : r.text;
-    h += '<div class="post-card">'
-      + '<div class="post-header"><span class="post-meta">' + esc(r.time) + '</span>'
-      + '<div class="badges"><span class="badge badge-reel">Reel</span><span class="badge ' + sc + '</span></div></div>'
-      + '<div style="font-size:11px;color:#aaa;margin-bottom:6px">File: ' + esc(r.fileName) + '</div>'
-      + '<div class="post-text">' + esc(preview) + '</div>'
-      + '<div class="post-actions"><button class="action-btn" style="color:#e53e3e" onclick="deleteReel(\'' + r.id + '\')">Delete</button></div></div>';
-  }
-  list.innerHTML = h;
+  setQueueProgress(r, 10, 'Reading video...');
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var blob = new Blob([e.target.result], { type: r.file.type || 'video/mp4' });
+    var fileSize = blob.size;
+    setQueueProgress(r, 20, 'Initializing upload...');
+
+    fetch('https://graph.facebook.com/v19.0/' + pid + '/videos', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ upload_phase: 'start', file_size: fileSize, access_token: pageToken })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(init) {
+      if (init.error) throw new Error(init.error.message);
+      setQueueProgress(r, 40, 'Uploading video...');
+      var fd = new FormData();
+      fd.append('upload_phase', 'transfer');
+      fd.append('upload_session_id', init.upload_session_id);
+      fd.append('start_offset', '0');
+      fd.append('video_file_chunk', blob);
+      fd.append('access_token', pageToken);
+      return fetch('https://graph.facebook.com/v19.0/' + pid + '/videos', { method: 'POST', body: fd })
+        .then(function(res) { return res.json(); })
+        .then(function(transfer) {
+          if (transfer.error) throw new Error(transfer.error.message);
+          setQueueProgress(r, 80, 'Publishing...');
+          return fetch('https://graph.facebook.com/v19.0/' + pid + '/videos', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ upload_phase: 'finish', upload_session_id: init.upload_session_id, description: caption, access_token: pageToken })
+          });
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(finish) {
+          if (finish.error) throw new Error(finish.error.message);
+          setQueueProgress(r, 100, 'Published!');
+          r.status = 'done';
+          state.postedFileNames[r.name] = true;
+          addPost({ id: finish.id || ('reel_'+Date.now()), text: caption, time: nowLabel(), status: 'published', likes: 0, type: 'reel' });
+          savePersistentData();
+          setTimeout(function() { assignSlotsToQueue(); renderQueue(); }, 1500);
+          showToast('Reel published: ' + r.name);
+        });
+    })
+    .catch(function(err) {
+      r.status = 'failed'; r.progressLabel = 'Failed: ' + (err.message||'').slice(0,50);
+      savePersistentData(); renderQueue();
+      showToast('Failed: ' + (err.message||'').slice(0,60));
+    });
+  };
+  reader.readAsArrayBuffer(r.file);
 }
 
-function deleteReel(rid) {
-  var pid = pg().id;
-  var i, fid = null, outR = [], outP = [];
-  for (i = 0; i < state.reels[pid].length; i++) {
-    if (state.reels[pid][i].id === rid) fid = state.reels[pid][i].fileId;
-    else outR.push(state.reels[pid][i]);
-  }
-  for (i = 0; i < state.posts[pid].length; i++) {
-    if (state.posts[pid][i].id !== rid) outP.push(state.posts[pid][i]);
-  }
-  state.reels[pid] = outR;
-  state.posts[pid] = outP;
-  if (fid) delete state.postedIds[fid];
-  savePersistentData();
-  renderReels(); renderPosts();
-  showToast('Reel removed.');
+function setQueueProgress(r, pct, label) {
+  r.progress = pct; r.progressLabel = label;
+  var pb = document.getElementById('pb-' + r.id); var pl = document.getElementById('pl-' + r.id);
+  if (pb) pb.style.width = pct + '%'; if (pl) pl.textContent = label;
 }
 
-/* ---- ANALYTICS ---- */
 function renderAnalytics() {
-  var page = pg();
   var posts = pgPosts();
-  var pub = [];
-  for (var i = 0; i < posts.length; i++) { if (posts[i].status === 'published') pub.push(posts[i]); }
-  var likes = 0;
-  for (i = 0; i < pub.length; i++) likes += pub[i].likes;
+  var pub = posts.filter(function(p) { return p.status === 'published'; });
+  var reels = pub.filter(function(p) { return p.type === 'reel'; });
+  var queued = state.reelQueue.filter(function(r) { return r.status === 'waiting'; }).length;
   document.getElementById('analytics-grid').innerHTML =
-    mkMetric('Page', esc(page.name.split(' ').slice(0, 2).join(' ')), 'Connected', 'up') +
-    mkMetric('Published', String(pub.length), 'Posts', 'up') +
-    mkMetric('Reels', String(pgReels().length), 'Scheduled', 'up') +
-    mkMetric('Total likes', String(likes), 'All posts', 'up');
+    mkMetric('Published', String(pub.length), 'Total posts', 'up') +
+    mkMetric('Reels posted', String(reels.length), 'Via queue', 'up') +
+    mkMetric('Reels queued', String(queued), 'Waiting', 'up') +
+    mkMetric('Daily slots', String(state.timeSlots.length), state.timeSlots.join(', ')||'None set', 'up');
   var h = '';
-  for (i = 0; i < pub.length; i++) {
-    var p = pub[i];
-    var prev = p.text.length > 110 ? p.text.slice(0, 110) + '...' : p.text;
-    h += '<div class="post-card"><div class="post-text" style="margin-bottom:8px">' + esc(prev) + '</div>'
-      + '<div class="post-stats"><span>Likes: ' + p.likes + '</span><span>Comments: ' + (postComments[p.id] || []).length + '</span></div></div>';
-  }
+  pub.slice(0,10).forEach(function(p) {
+    var prev = p.text.length > 110 ? p.text.slice(0,110)+'...' : p.text;
+    h += '<div class="post-card"><div class="badges" style="margin-bottom:6px">'+(p.type==='reel'?'<span class="badge badge-reel">Reel</span>':'')+'<span class="badge badge-pub">Published</span></div><div class="post-text">'+esc(prev)+'</div><div class="post-stats"><span>'+p.time+'</span></div></div>';
+  });
   document.getElementById('analytics-posts').innerHTML = h || '<div class="empty-state">No published posts yet.</div>';
 }
 
-function mkMetric(label, value, change, dir) {
-  return '<div class="metric-card"><div class="metric-label">' + label + '</div><div class="metric-value" style="font-size:18px">' + value + '</div><div class="metric-change ' + dir + '">' + change + '</div></div>';
+function mkMetric(label, value, change) {
+  return '<div class="metric-card"><div class="metric-label">'+label+'</div><div class="metric-value">'+value+'</div><div class="metric-change">'+change+'</div></div>';
 }
 
-/* ---- UTILS ---- */
-function nowLabel() {
-  return new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-}
-function fmtDate(d) {
-  return d.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-}
-function esc(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-function savePersistentData() {
-  try {
-    var pid = pg() ? pg().id : null;
-    if (!pid) return;
-    localStorage.setItem('posts_' + pid, JSON.stringify(state.posts[pid] || []));
-    localStorage.setItem('reels_' + pid, JSON.stringify(state.reels[pid] || []));
-    localStorage.setItem('posted_ids', JSON.stringify(state.postedIds));
-  } catch(e) {}
-}
-
-function loadPersistentData(pid) {
-  try {
-    var savedPosts = localStorage.getItem('posts_' + pid);
-    var savedReels = localStorage.getItem('reels_' + pid);
-    var savedPostedIds = localStorage.getItem('posted_ids');
-    if (savedPosts) state.posts[pid] = JSON.parse(savedPosts);
-    if (savedReels) state.reels[pid] = JSON.parse(savedReels);
-    if (savedPostedIds) state.postedIds = JSON.parse(savedPostedIds);
-  } catch(e) {}
-}
-
-function checkScheduledPosts() {
-  var pid = pg() ? pg().id : null;
-  if (!pid) return;
-  var posts = state.posts[pid] || [];
-  var now = Date.now();
-  var changed = false;
-  for (var i = 0; i < posts.length; i++) {
-    var p = posts[i];
-    if (p.status === 'scheduled' && !p.fbScheduled && p.scheduleTs && p.scheduleTs <= now) {
-      // Auto-publish locally scheduled post
-      fetch('https://graph.facebook.com/v19.0/' + pid + '/feed', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: p.text, access_token: pg().access_token })
-      })
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        if (!d.error) {
-          p.status = 'published';
-          p.id = d.id;
-          savePersistentData();
-          renderPosts();
-          showToast('Scheduled post published!');
-        }
-      })
-      .catch(function() {});
-      changed = true;
-    }
-  }
-  if (changed) renderPosts();
-}
-
-// Check every minute if any scheduled posts are due
-setInterval(checkScheduledPosts, 60000);
-
-function showToast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function() { t.classList.remove('show'); }, 2800);
-}
+function nowLabel() { return new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}); }
+function fmtDate(d) { return d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}); }
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function showToast(msg) { var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},3000); }
 
 function restoreFromStorage() {
-  // Restore settings always
-  var desc = localStorage.getItem('global_desc') || '';
-  var tags = localStorage.getItem('global_hashtags') || '';
-  state.globalDesc = desc;
-  state.globalHashtags = tags;
-
-  // Restore FB connection
   var savedToken = localStorage.getItem('fb_token');
   var savedPageId = localStorage.getItem('fb_page_id');
   var savedPageName = localStorage.getItem('fb_page_name');
@@ -1085,29 +723,11 @@ function restoreFromStorage() {
     state.token = savedToken;
     state.pages = [{ id: savedPageId, name: savedPageName, access_token: savedToken }];
     state.posts[savedPageId] = [];
-    state.reels[savedPageId] = [];
-    document.getElementById('setup-screen').style.display = 'none';
-    document.getElementById('main-app').style.display = 'flex';
-    document.getElementById('page-select').innerHTML = '<option value="0">' + esc(savedPageName) + '</option>';
     loadPersistentData(savedPageId);
-    renderBanner();
-    renderPosts();
-    renderReels();
-    setTimeout(checkScheduledPosts, 2000);
-
-    // Restore Drive connection
-    var savedDriveToken = localStorage.getItem('drive_token');
-    if (savedDriveToken) {
-      state.driveToken = savedDriveToken;
-      document.getElementById('drive-connect-section').style.display = 'none';
-      document.getElementById('drive-connected-section').style.display = 'block';
-      loadReelsFolder();
-    }
+    showMainApp();
   }
 }
-
 window.addEventListener('load', restoreFromStorage);
 </script>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
 </body>
 </html>
