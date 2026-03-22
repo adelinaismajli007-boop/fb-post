@@ -336,6 +336,7 @@ function connectApp() {
       localStorage.setItem('fb_token', t);
       localStorage.setItem('fb_page_id', d.id);
       localStorage.setItem('fb_page_name', d.name);
+      savePersistentData();
     })
     .catch(function() { errEl.textContent = 'Connection failed. Check your token.'; errEl.style.display = 'block'; });
 }
@@ -472,16 +473,55 @@ function schedulePost() {
   var t = document.getElementById('schedule-time').value;
   if (!text) { showToast('Please write something first.'); return; }
   if (!t) { showToast('Please pick a schedule time.'); return; }
-  var label = fmtDate(new Date(t));
+  var schedDate = new Date(t);
+  var nowDate = new Date();
+  if (schedDate <= nowDate) { showToast('Please pick a future date and time.'); return; }
+  var unixTime = Math.floor(schedDate.getTime() / 1000);
+  var label = fmtDate(schedDate);
   var pid = pg().id;
-  var np = { id: 'local_' + Date.now(), text: buildPostText(text), time: label, status: 'scheduled', likes: 0, reach: 0, type: 'post' };
-  state.posts[pid].unshift(np);
-  postComments[np.id] = [];
-  document.getElementById('post-text').value = '';
-  document.getElementById('schedule-time').value = '';
-  updateCharCount();
-  renderPosts();
-  showToast('Scheduled for ' + label);
+  var fullText = buildPostText(text);
+  // Try to schedule via Facebook API
+  fetch('https://graph.facebook.com/v19.0/' + pid + '/feed', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: fullText,
+      published: false,
+      scheduled_publish_time: unixTime,
+      access_token: pg().access_token
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
+    var np;
+    if (d.error) {
+      // Facebook scheduling requires app review - fall back to local schedule
+      np = { id: 'local_' + Date.now(), text: fullText, time: label, scheduleTs: schedDate.getTime(), status: 'scheduled', likes: 0, reach: 0, type: 'post', fbScheduled: false };
+      showToast('Saved locally — will remind you to post at ' + label);
+    } else {
+      np = { id: d.id, text: fullText, time: label, scheduleTs: schedDate.getTime(), status: 'scheduled', likes: 0, reach: 0, type: 'post', fbScheduled: true };
+      showToast('Scheduled on Facebook for ' + label + '!');
+    }
+    state.posts[pid].unshift(np);
+    postComments[np.id] = [];
+    document.getElementById('post-text').value = '';
+    document.getElementById('schedule-time').value = '';
+    updateCharCount();
+    savePersistentData();
+    renderPosts();
+  })
+  .catch(function() {
+    var schedDate2 = new Date(t);
+    var np = { id: 'local_' + Date.now(), text: fullText, time: label, scheduleTs: schedDate2.getTime(), status: 'scheduled', likes: 0, reach: 0, type: 'post', fbScheduled: false };
+    state.posts[pid].unshift(np);
+    postComments[np.id] = [];
+    document.getElementById('post-text').value = '';
+    document.getElementById('schedule-time').value = '';
+    updateCharCount();
+    savePersistentData();
+    renderPosts();
+    showToast('Saved locally for ' + label);
+  });
 }
 
 /* ---- POSTS ---- */
@@ -558,6 +598,7 @@ function deletePost(pid) {
     if (state.posts[id][i].id !== pid) out.push(state.posts[id][i]);
   }
   state.posts[id] = out;
+  savePersistentData();
   renderPosts();
   showToast('Post deleted.');
 }
@@ -689,6 +730,7 @@ function scheduleReel() {
   postComments[nr.id] = [];
   renderPosts();
   renderReels();
+  savePersistentData();
   clearReelForm();
   showToast('Reel scheduled for ' + label + '!');
 }
@@ -725,6 +767,7 @@ function deleteReel(rid) {
   state.reels[pid] = outR;
   state.posts[pid] = outP;
   if (fid) delete state.postedIds[fid];
+  savePersistentData();
   renderReels(); renderPosts();
   showToast('Reel removed.');
 }
@@ -766,6 +809,62 @@ function fmtDate(d) {
 function esc(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
+function savePersistentData() {
+  try {
+    var pid = pg() ? pg().id : null;
+    if (!pid) return;
+    localStorage.setItem('posts_' + pid, JSON.stringify(state.posts[pid] || []));
+    localStorage.setItem('reels_' + pid, JSON.stringify(state.reels[pid] || []));
+    localStorage.setItem('posted_ids', JSON.stringify(state.postedIds));
+  } catch(e) {}
+}
+
+function loadPersistentData(pid) {
+  try {
+    var savedPosts = localStorage.getItem('posts_' + pid);
+    var savedReels = localStorage.getItem('reels_' + pid);
+    var savedPostedIds = localStorage.getItem('posted_ids');
+    if (savedPosts) state.posts[pid] = JSON.parse(savedPosts);
+    if (savedReels) state.reels[pid] = JSON.parse(savedReels);
+    if (savedPostedIds) state.postedIds = JSON.parse(savedPostedIds);
+  } catch(e) {}
+}
+
+function checkScheduledPosts() {
+  var pid = pg() ? pg().id : null;
+  if (!pid) return;
+  var posts = state.posts[pid] || [];
+  var now = Date.now();
+  var changed = false;
+  for (var i = 0; i < posts.length; i++) {
+    var p = posts[i];
+    if (p.status === 'scheduled' && !p.fbScheduled && p.scheduleTs && p.scheduleTs <= now) {
+      // Auto-publish locally scheduled post
+      fetch('https://graph.facebook.com/v19.0/' + pid + '/feed', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: p.text, access_token: pg().access_token })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (!d.error) {
+          p.status = 'published';
+          p.id = d.id;
+          savePersistentData();
+          renderPosts();
+          showToast('Scheduled post published!');
+        }
+      })
+      .catch(function() {});
+      changed = true;
+    }
+  }
+  if (changed) renderPosts();
+}
+
+// Check every minute if any scheduled posts are due
+setInterval(checkScheduledPosts, 60000);
+
 function showToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
@@ -792,9 +891,11 @@ function restoreFromStorage() {
     document.getElementById('setup-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'flex';
     document.getElementById('page-select').innerHTML = '<option value="0">' + esc(savedPageName) + '</option>';
+    loadPersistentData(savedPageId);
     renderBanner();
     renderPosts();
     renderReels();
+    setTimeout(checkScheduledPosts, 2000);
 
     // Restore Drive connection
     var savedDriveToken = localStorage.getItem('drive_token');
